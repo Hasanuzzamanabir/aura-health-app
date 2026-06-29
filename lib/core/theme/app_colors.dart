@@ -25,4 +25,7 @@ class AppColors {
   static const Color aiGradientEnd = Color(0xFF4CAF50);
 
   static const Color labelTextColor = Color(0xFF747474);
+
+  //forgot password
+  static const Color forgotColor = Color(0xFF2C2C2C);
 }

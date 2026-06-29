@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_instance/get_instance.dart';
+import 'package:get/state_manager.dart';
+import 'package:orange/core/theme/app_colors.dart';
 import 'package:orange/core/utils/app_style.dart';
 import 'package:orange/core/utils/image_path.dart';
+import 'package:orange/core/widget/google_login_container.dart';
 import 'package:orange/core/widget/text_field_widget.dart';
+import 'package:orange/feature/auth/login/controller/login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,45 +19,227 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(LoginController());
+
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            children: [
-              Image.asset(ImagePath.appLogo),
-              SizedBox(height: 16.h),
-              Text(
-                "Sign in to your account",
-                style: AppStyle.poppinsSemiBold600(context),
-              ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 22.h),
+                        Image.asset(ImagePath.appLogo),
+                        SizedBox(height: 16.h),
+                        Text(
+                          "Sign in to your account",
+                          style: AppStyle.poppinsSemiBold600(context),
+                        ),
 
-              SizedBox(height: 16.h),
+                        SizedBox(height: 26.h),
 
-              TextFieldWidget(
-                text: "Email",
-                child: TextField(
-                  decoration: InputDecoration(labelText: 'Enter your email'),
-                ),
-              ),
+                        TextFieldWidget(
+                          text: "Email",
+                          child: TextField(
+                            controller: emailController,
+                            decoration: InputDecoration(
+                              labelText: 'Enter your email',
+                            ),
+                          ),
+                        ),
 
-              TextFieldWidget(
-                text: "Password",
-                child: TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Enter your Password',
-                    suffixIcon: Icon(Icons.visibility_off_outlined),
+                        Obx(
+                          () => TextFieldWidget(
+                            text: "Password",
+                            child: TextField(
+                              controller: passwordController,
+                              decoration: InputDecoration(
+                                labelText: 'Enter your Password',
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    controller.passwordVisibility.value
+                                        ? Icons.visibility_off_outlined
+                                        : Icons.visibility_outlined,
+                                  ),
+                                  onPressed: () {
+                                    controller.togglePasswordVisibility();
+                                  },
+                                ),
+                              ),
+                              obscureText: controller.passwordVisibility.value,
+                              obscuringCharacter: "*",
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Obx(
+                              () => InkWell(
+                                onTap: () {
+                                  controller.toggleRememberMe();
+                                },
+                                borderRadius: BorderRadius.circular(4.r),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 4.h),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IgnorePointer(
+                                        child: SizedBox(
+                                          width: 20.w,
+                                          height: 20.h,
+                                          child: Checkbox(
+                                            value:
+                                                controller.isRememberMe.value,
+                                            activeColor: AppColors.primary,
+                                            checkColor: Colors.white,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4.r),
+                                            ),
+                                            side: BorderSide(
+                                              color: AppColors.primary,
+                                              width: 1.5.w,
+                                            ),
+                                            onChanged: (value) {
+                                              controller.toggleRememberMe();
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(width: 8.w),
+                                      Text(
+                                        "Remember me",
+                                        style: AppStyle.interMedium500(context)
+                                            .copyWith(
+                                              fontSize: 12.sp,
+                                              color: AppColors.forgotColor,
+                                            ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {},
+                              borderRadius: BorderRadius.circular(4.r),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 4.h),
+                                child: Text(
+                                  "Forgot password?",
+                                  style: AppStyle.interMedium500(context)
+                                      .copyWith(
+                                        fontSize: 12.sp,
+                                        color: AppColors.forgotColor,
+                                        decoration: TextDecoration.underline,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(height: 26.h),
+
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text("Login"),
+                          ),
+                        ),
+
+                        SizedBox(height: 26.h),
+
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Divider(
+                                color: const Color(0xFFCFD8DC),
+                                thickness: 1.5,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 12.w),
+                              child: Text(
+                                "Or Connect with",
+                                style: AppStyle.interMedium500(context)
+                                    .copyWith(
+                                      fontSize: 14.sp,
+                                      color: AppColors.textSecondary,
+                                    ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Divider(
+                                color: const Color(0xFFCFD8DC),
+                                thickness: 1.5,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(height: 20.h),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GoogleLoginContainer(
+                              imagePath: ImagePath.googleIcon,
+                              onTap: () {},
+                            ),
+                            SizedBox(width: 16.w),
+                            GoogleLoginContainer(
+                              imagePath: ImagePath.appleIcon,
+                              onTap: () {},
+                            ),
+                          ],
+                        ),
+
+                        const Spacer(),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("Don't have an account? "),
+                            InkWell(
+                              onTap: () {},
+                              child: Text(
+                                "Sign Up",
+                                style: AppStyle.interMedium500(
+                                  context,
+                                ).copyWith(color: AppColors.primary),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 16.h),
+                      ],
+                    ),
                   ),
-                  obscureText: true,
-                  obscuringCharacter: "*",
                 ),
               ),
-
-              //
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

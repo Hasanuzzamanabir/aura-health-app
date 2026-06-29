@@ -13,6 +13,8 @@ class ImagePath {
   static const String recipeIcon = '$_iconPath/recipes.png';
   static const String profileIcon = '$_iconPath/profile.png';
   static const String appLogo = '$_iconPath/app_logo.png';
+  static const String googleIcon = '$_iconPath/google.svg';
+  static const String appleIcon = '$_iconPath/apple.svg';
 
   //splash Screen
   static const String splashScreen = '$_imagePath/welcome_bg.png';
