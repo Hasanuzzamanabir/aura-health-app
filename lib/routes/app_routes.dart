@@ -1,4 +1,7 @@
+import 'package:aurahealth/feature/auth/change_password/screen/change_password.dart';
 import 'package:aurahealth/feature/auth/forgot_password/screen/forgot_password.dart';
+import 'package:aurahealth/feature/auth/otp_screen/screen/otp_screen.dart';
+import 'package:aurahealth/feature/success/success_screen.dart';
 import 'package:get/get.dart';
 import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
 import 'package:aurahealth/feature/auth/signup/screen/signup_screen.dart';
@@ -26,6 +29,24 @@ class AppRoutes {
     GetPage(
       name: ForgotPassword.forgotPassword,
       page: () => const ForgotPassword(),
+    ),
+
+    //otp  screen
+    GetPage(
+      name: OtpScreen.otpScreen,
+      page: () => OtpScreen(email: Get.arguments as String),
+    ),
+
+    //change passworrd  screen
+    GetPage(
+      name: ChangePassword.changePassword,
+      page: () => const ChangePassword(),
+    ),
+
+    //success screen
+    GetPage(
+      name: SuccessScreen.successScreen,
+      page: () => const SuccessScreen(),
     ),
   ];
 }

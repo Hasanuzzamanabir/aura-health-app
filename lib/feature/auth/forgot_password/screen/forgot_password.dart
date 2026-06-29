@@ -1,7 +1,10 @@
 import 'package:aurahealth/core/utils/app_style.dart';
 import 'package:aurahealth/core/widget/text_field_widget.dart';
+import 'package:aurahealth/feature/auth/otp_screen/screen/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -60,7 +63,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (emailController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Please enter your email")),
+                      );
+                    } else {
+                      Get.toNamed(
+                        OtpScreen.otpScreen,
+                        arguments: emailController.text,
+                      );
+                    }
+                  },
                   child: Text("Send OTP"),
                 ),
               ),
