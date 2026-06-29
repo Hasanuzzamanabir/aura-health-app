@@ -8,6 +8,7 @@ import 'package:aurahealth/feature/auth/signup/controller/signup_controller.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:aurahealth/feature/onboarding/screen/onboarding_steps_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -121,7 +122,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () => Get.toNamed(OnboardingStepsScreen.onboardingStepsScreen),
                             child: Text("Singup"),
                           ),
                         ),

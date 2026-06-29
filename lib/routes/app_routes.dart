@@ -7,6 +7,8 @@ import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
 import 'package:aurahealth/feature/auth/signup/screen/signup_screen.dart';
 import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:aurahealth/feature/splash_screen/splash_screen.dart';
+import 'package:aurahealth/feature/onboarding/screen/onboarding_steps_screen.dart';
+import 'package:aurahealth/feature/onboarding/screen/plan_ready_screen.dart';
 
 class AppRoutes {
   static List<GetPage> routes = [
@@ -47,6 +49,18 @@ class AppRoutes {
     GetPage(
       name: SuccessScreen.successScreen,
       page: () => const SuccessScreen(),
+    ),
+
+    // onboarding steps screen
+    GetPage(
+      name: OnboardingStepsScreen.onboardingStepsScreen,
+      page: () => const OnboardingStepsScreen(),
+    ),
+
+    // plan ready screen
+    GetPage(
+      name: PlanReadyScreen.planReadyScreen,
+      page: () => const PlanReadyScreen(),
     ),
   ];
 }
