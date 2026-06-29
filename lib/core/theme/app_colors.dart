@@ -23,4 +23,6 @@ class AppColors {
   // Gradient AI Color
   static const Color aiGradientStart = Color(0xFF34A853);
   static const Color aiGradientEnd = Color(0xFF4CAF50);
+
+  static const Color labelTextColor = Color(0xFF747474);
 }

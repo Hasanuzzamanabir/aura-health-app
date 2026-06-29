@@ -55,8 +55,8 @@ class AppTheme {
           fontWeight: FontWeight.normal,
         ),
         labelStyle: const TextStyle(
-          color: AppColors.textPrimary,
-          fontSize: 16,
+          color: AppColors.labelTextColor,
+          fontSize: 12,
           fontWeight: FontWeight.w500,
         ),
         enabledBorder: OutlineInputBorder(
