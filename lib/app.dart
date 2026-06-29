@@ -1,28 +1,17 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:orange/core/utils/app_colors.dart';
 import 'package:orange/routes/app_routes.dart';
 
-
-
-class aura_health extends StatefulWidget {
-  const aura_health({super.key});
+class AuraHealthApp extends StatefulWidget {
+  const AuraHealthApp({super.key});
 
   @override
-  State<aura_health> createState() => _aura_healthState();
+  State<AuraHealthApp> createState() => _AuraHealthAppState();
 }
 
-class _aura_healthState extends State<aura_health> {
-  @override
-  void initState() {
-    super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   unawaited(AlarmNotificationService.instance.initialize());
-    // });
-  }
-
+class _AuraHealthAppState extends State<AuraHealthApp> {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -31,14 +20,17 @@ class _aura_healthState extends State<aura_health> {
       splitScreenMode: true,
       builder: (context, child) {
         return GetMaterialApp(
-          title: 'aura_health',
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoutes.bottomNavBarScreen,
-         getPages: AppRoutes.routes,
-         // initialBinding: ControllerBinder(),
-          themeMode: ThemeMode.system,
-          // theme: AppTheme.lightTheme,
-          // darkTheme: AppTheme.darkTheme,
+          getPages: AppRoutes.routes,
+          theme: ThemeData(
+            scaffoldBackgroundColor: AppColors.background,
+            appBarTheme: const AppBarTheme(
+              backgroundColor: AppColors.background,
+              elevation: 0,
+              scrolledUnderElevation: 0,
+            ),
+          ),
         );
       },
     );

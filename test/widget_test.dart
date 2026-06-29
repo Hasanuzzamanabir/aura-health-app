@@ -12,7 +12,7 @@ import 'package:orange/app.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const aura_health());
+    await tester.pumpWidget(const AuraHealthApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

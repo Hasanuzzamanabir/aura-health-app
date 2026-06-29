@@ -9,11 +9,7 @@ class AppRoutes {
   static List<GetPage> routes = [
     GetPage(
       name: bottomNavBarScreen,
-      page: () => BottomNavBarScreen(
-        currentIndex: 0,
-        onTap: (int value) {
-        },
-      ),
+      page: () => const MainScreen(),
     ),
   ];
 }

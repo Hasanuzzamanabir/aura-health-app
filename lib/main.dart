@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:orange/app.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
- // await GetStorage.init();
- // await TokenStorage.clearTokens();
+  // await GetStorage.init();
+  // await TokenStorage.clearTokens();
 
   // Initialize AuthService
   // Get.put(AuthService());
   // Initialize CartController
   // Get.put(CartController());
 
-  runApp(const aura_health());
+  runApp(const AuraHealthApp());
 }

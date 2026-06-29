@@ -15,9 +15,5 @@ class AppColors {
   static const Color borderFocused = Color(0xFF00B366);
   static const Color error = Color(0xFFD32F2F);
 
-  // Accent / Others
-  static const Color black = Colors.black;
-  static const Color white = Colors.white;
   static const Color shadow = Color(0x0A000000);
 }
- 
