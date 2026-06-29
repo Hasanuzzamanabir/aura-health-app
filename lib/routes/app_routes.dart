@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
-import 'package:orange/feature/auth/login/screen/login_screen.dart';
-import 'package:orange/feature/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:orange/feature/splash_screen/splash_screen.dart';
+import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
+import 'package:aurahealth/feature/auth/signup/screen/signup_screen.dart';
+import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:aurahealth/feature/splash_screen/splash_screen.dart';
 
 class AppRoutes {
   static List<GetPage> routes = [
@@ -16,5 +17,8 @@ class AppRoutes {
 
     //Login Screen
     GetPage(name: LoginScreen.loginScreen, page: () => const LoginScreen()),
+
+    //singup screen
+    GetPage(name: SignupScreen.signupScreen, page: () => const SignupScreen()),
   ];
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:orange/core/theme/app_colors.dart';
+import 'package:aurahealth/core/theme/app_colors.dart';
 
 class AppStyle {
   static TextStyle poppinsSemiBold600(BuildContext context) {

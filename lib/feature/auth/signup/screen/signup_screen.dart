@@ -1,38 +1,27 @@
-import 'package:aurahealth/feature/auth/signup/screen/signup_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/utils/app_style.dart';
 import 'package:aurahealth/core/utils/image_path.dart';
 import 'package:aurahealth/core/widget/google_login_container.dart';
 import 'package:aurahealth/core/widget/text_field_widget.dart';
-import 'package:aurahealth/feature/auth/login/controller/login_controller.dart';
+import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
+import 'package:aurahealth/feature/auth/signup/controller/signup_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
-  static const String loginScreen = '/loginScreen';
+  static const String signupScreen = '/signupScreen';
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LoginController());
-
+    final controller = Get.put(SignupController());
     return Scaffold(
       body: SafeArea(
         child: LayoutBuilder(
@@ -49,16 +38,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         Image.asset(ImagePath.appLogo),
                         SizedBox(height: 16.h),
                         Text(
-                          "Sign in to your account",
+                          "Signup  to your account",
                           style: AppStyle.poppinsSemiBold600(context),
                         ),
 
                         SizedBox(height: 26.h),
 
                         TextFieldWidget(
+                          text: "First Name",
+                          child: TextField(
+                            decoration: InputDecoration(
+                              labelText: 'Enter your First Name',
+                            ),
+                          ),
+                        ),
+                        TextFieldWidget(
+                          text: "Last Name",
+                          child: TextField(
+                            decoration: InputDecoration(
+                              labelText: 'Enter your email',
+                            ),
+                          ),
+                        ),
+                        TextFieldWidget(
                           text: "Email",
                           child: TextField(
-                            controller: emailController,
                             decoration: InputDecoration(
                               labelText: 'Enter your email',
                             ),
@@ -69,7 +73,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           () => TextFieldWidget(
                             text: "Password",
                             child: TextField(
-                              controller: passwordController,
                               decoration: InputDecoration(
                                 labelText: 'Enter your Password',
                                 suffixIcon: IconButton(
@@ -88,74 +91,29 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Obx(
-                              () => InkWell(
-                                onTap: () {
-                                  controller.toggleRememberMe();
-                                },
-                                borderRadius: BorderRadius.circular(4.r),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 4.h),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      IgnorePointer(
-                                        child: SizedBox(
-                                          width: 20.w,
-                                          height: 20.h,
-                                          child: Checkbox(
-                                            value:
-                                                controller.isRememberMe.value,
-                                            activeColor: AppColors.primary,
-                                            checkColor: Colors.white,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(4.r),
-                                            ),
-                                            side: BorderSide(
-                                              color: AppColors.primary,
-                                              width: 1.5.w,
-                                            ),
-                                            onChanged: (value) {
-                                              controller.toggleRememberMe();
-                                            },
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(width: 8.w),
-                                      Text(
-                                        "Remember me",
-                                        style: AppStyle.interMedium500(context)
-                                            .copyWith(
-                                              fontSize: 12.sp,
-                                              color: AppColors.forgotColor,
-                                            ),
-                                      ),
-                                    ],
+                        Obx(
+                          () => TextFieldWidget(
+                            text: "Confirm Password",
+                            child: TextField(
+                              decoration: InputDecoration(
+                                labelText: 'Enter your Confirm Password',
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    controller.confirmPasswordVisibility.value
+                                        ? Icons.visibility_off_outlined
+                                        : Icons.visibility_outlined,
                                   ),
+                                  onPressed: () {
+                                    controller
+                                        .toggleConfirmPasswordVisibility();
+                                  },
                                 ),
                               ),
+                              obscureText:
+                                  controller.confirmPasswordVisibility.value,
+                              obscuringCharacter: "*",
                             ),
-                            InkWell(
-                              onTap: () {},
-                              borderRadius: BorderRadius.circular(4.r),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 4.h),
-                                child: Text(
-                                  "Forgot password?",
-                                  style: AppStyle.interMedium500(context)
-                                      .copyWith(
-                                        fontSize: 12.sp,
-                                        color: AppColors.forgotColor,
-                                        decoration: TextDecoration.underline,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
 
                         SizedBox(height: 26.h),
@@ -164,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {},
-                            child: Text("Sing In"),
+                            child: Text("Singup"),
                           ),
                         ),
 
@@ -220,13 +178,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Don't have an account? "),
+                            Text("Already have an account? "),
                             InkWell(
                               onTap: () {
-                                Get.toNamed(SignupScreen.signupScreen);
+                                Get.offNamed(LoginScreen.loginScreen);
                               },
                               child: Text(
-                                "Sign Up",
+                                "Login",
                                 style: AppStyle.interMedium500(
                                   context,
                                 ).copyWith(color: AppColors.primary),
