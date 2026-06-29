@@ -1,3 +1,4 @@
+import 'package:aurahealth/feature/auth/forgot_password/screen/forgot_password.dart';
 import 'package:aurahealth/feature/auth/signup/screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -140,7 +141,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Get.offNamed(ForgotPassword.forgotPassword);
+                              },
                               borderRadius: BorderRadius.circular(4.r),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: 4.h),

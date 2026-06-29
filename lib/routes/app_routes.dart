@@ -1,3 +1,4 @@
+import 'package:aurahealth/feature/auth/forgot_password/screen/forgot_password.dart';
 import 'package:get/get.dart';
 import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
 import 'package:aurahealth/feature/auth/signup/screen/signup_screen.dart';
@@ -20,5 +21,11 @@ class AppRoutes {
 
     //singup screen
     GetPage(name: SignupScreen.signupScreen, page: () => const SignupScreen()),
+
+    //forgot password screen
+    GetPage(
+      name: ForgotPassword.forgotPassword,
+      page: () => const ForgotPassword(),
+    ),
   ];
 }
