@@ -6,21 +6,29 @@ import 'package:get/get.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final VoidCallback? onBackPressed;
+  final bool isBack;
 
-  const CustomAppBar({super.key, required this.title, this.onBackPressed});
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.onBackPressed,
+    this.isBack = true,
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.background,
       elevation: 0,
-      leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_ios_new,
-          color: AppColors.textPrimary,
-        ),
-        onPressed: onBackPressed ?? () => Get.back(),
-      ),
+      leading: isBack
+          ? IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios_new,
+                color: AppColors.textPrimary,
+              ),
+              onPressed: onBackPressed ?? () => Get.back(),
+            )
+          : SizedBox.shrink(),
       title: Text(
         title,
         style: TextStyle(

@@ -1,7 +1,6 @@
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/widget/custom_app_bar.dart';
-import 'package:aurahealth/feature/help_and_support.dart/view/help_and_support_sreen.dart';
-import 'package:aurahealth/feature/profile/view/bio_markers.dart';
+import 'package:aurahealth/feature/profile/view/bio_marker_screen.dart';
 import 'package:aurahealth/feature/profile/view/health_summary_page.dart';
 import 'package:aurahealth/feature/profile/view/personal_information.dart';
 import 'package:aurahealth/feature/profile/view/subscription_screen.dart';
@@ -60,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.surface,
-      appBar: const CustomAppBar(title: 'Profile'),
+      appBar: const CustomAppBar(title: 'Profile', isBack: false),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
         child: Column(

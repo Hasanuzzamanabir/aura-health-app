@@ -18,4 +18,7 @@ class ImagePath {
 
   //splash Screen
   static const String splashScreen = '$_imagePath/welcome_bg.png';
+
+  //profile
+  static const String infoAsset = '$_imagePath/info_asset.png';
 }
