@@ -13,8 +13,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-// import 'custom_app_bar.dart'; 
-// import 'profile_widgets.dart'; 
+// import 'custom_app_bar.dart';
+// import 'profile_widgets.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -22,19 +22,39 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accountSectionItems = [
-      ProfileTileData(icon: Icons.person_outline, title: 'Personal Information', onTap: () {
-        Get.to(() => const PersonalInformationScreen());
-      }),
-      ProfileTileData(icon: Icons.link_rounded, title: 'Connected Devices', onTap: () {}),
-      ProfileTileData(icon: Icons.monitor_heart_outlined, title: 'Health Summary', onTap: () {
-        Get.to(() => const HealthSummaryScreen());
-      }),
-      ProfileTileData(icon: Icons.analytics_outlined, title: 'Biomarkers', onTap: () {
-        Get.to(() => const BiomarkerScreen());
-      }),
-      ProfileTileData(icon: Icons.credit_card_outlined, title: 'Subscription', onTap: () {
-        Get.to(() => const SubscriptionScreen());
-      }),
+      ProfileTileData(
+        icon: Icons.person_outline,
+        title: 'Personal Information',
+        onTap: () {
+          Get.to(() => const PersonalInformationScreen());
+        },
+      ),
+      ProfileTileData(
+        icon: Icons.link_rounded,
+        title: 'Connected Devices',
+        onTap: () {},
+      ),
+      ProfileTileData(
+        icon: Icons.monitor_heart_outlined,
+        title: 'Health Summary',
+        onTap: () {
+          Get.to(() => const HealthSummaryScreen());
+        },
+      ),
+      ProfileTileData(
+        icon: Icons.analytics_outlined,
+        title: 'Biomarkers',
+        onTap: () {
+          Get.to(() => const BiomarkerScreen());
+        },
+      ),
+      ProfileTileData(
+        icon: Icons.credit_card_outlined,
+        title: 'Subscription',
+        onTap: () {
+          Get.to(() => const SubscriptionScreen());
+        },
+      ),
     ];
 
     return Scaffold(
@@ -55,7 +75,9 @@ class ProfileScreen extends StatelessWidget {
                 child: CircleAvatar(
                   radius: 45.r,
                   backgroundColor: AppColors.border,
-                  backgroundImage: const NetworkImage('https://placeholder.com/user_image.png'),
+                  backgroundImage: const NetworkImage(
+                    'https://imgs.search.brave.com/ZmFlfJH5KKHzXpcekBlo3lAU8de84r5qnmS6chnO7cI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvOTM4/NzA5MzYyL3Bob3Rv/L3BvcnRyYWl0LW9m/LWEtZ2lybC5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9VVFH/WHBlaUxySTc4bk8x/QjlwZVVuMEQwZkNT/UnJtLUo4eG9oTVdH/Mkxtcz0',
+                  ),
                 ),
               ),
             ),
@@ -71,10 +93,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 4.h),
             Text(
               'emma.wilson@email.com',
-              style: TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: 13.sp,
-              ),
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 13.sp),
             ),
             SizedBox(height: 12.h),
             Container(
@@ -106,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.only(left: 4.w, bottom: 10.h),
-                child:  Text(
+                child: Text(
                   'Settings',
                   style: TextStyle(
                     color: AppColors.textPrimary,
@@ -120,13 +139,13 @@ class ProfileScreen extends StatelessWidget {
               icon: Icons.info_outline_rounded,
               title: 'About',
               onTap: () {
-Get.to(() => const AboutScreen());
+                Get.to(() => const AboutScreen());
               },
             ),
             SettingsSingleCard(
               icon: Icons.shield_outlined,
               title: 'Privacy Policy',
-              onTap: ()   {
+              onTap: () {
                 Get.to(() => const PrivacyPolicyScreen());
               },
             ),
@@ -140,8 +159,7 @@ Get.to(() => const AboutScreen());
             SettingsSingleCard(
               icon: Icons.help_outline_rounded,
               title: 'Help and support',
-              onTap: () {
-              },
+              onTap: () {},
             ),
             SizedBox(height: 20.h),
           ],

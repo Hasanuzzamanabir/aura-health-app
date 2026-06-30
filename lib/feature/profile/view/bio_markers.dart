@@ -6,7 +6,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/utils/app_style.dart';
 
-
 class BiomarkerScreen extends StatelessWidget {
   const BiomarkerScreen({super.key});
 
@@ -53,7 +52,8 @@ class BiomarkerScreen extends StatelessWidget {
               sliderValue: 0.6,
               minRange: "70",
               maxRange: "99",
-              statusColor: AppColors.primary, isUpArrow:false,
+              statusColor: AppColors.primary,
+              isUpArrow: false,
             ),
             BiomarkerCard(
               name: "Cortisol (AM)",
@@ -88,25 +88,31 @@ class BiomarkerScreen extends StatelessWidget {
               isUpArrow: false,
               statusColor: AppColors.error,
             ),
-            
+
             SizedBox(height: 16.h),
             DragDropUploadWidget(onBrowsePressed: () {}),
-            
+
             SizedBox(height: 24.h),
             const AiInterpretationWidget(
-              interpretationText: "Your cortisol is elevated and testosterone is on the lower end of the range. This indicates high systemic stress and poor recovery.",
+              interpretationText:
+                  "Your cortisol is elevated and testosterone is on the lower end of the range. This indicates high systemic stress and poor recovery.",
               protocols: [
                 "Increased healthy fats (avocado, nuts) by 15%",
                 "Added Ashwagandha to supplement stack",
                 "Reduced high-intensity workout volume",
               ],
             ),
-            
+
             SizedBox(height: 24.h),
             // Supplement Stack Section
             Text(
               "Supplement Stack",
-              style: TextStyle(fontFamily: "Inter", fontSize: 16.sp, fontWeight: FontWeight.bold, color: AppColors.textPrimary),
+              style: TextStyle(
+                fontFamily: "Inter",
+                fontSize: 16.sp,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textPrimary,
+              ),
             ),
             SizedBox(height: 12.h),
             Container(
@@ -114,73 +120,83 @@ class BiomarkerScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: AppColors.background,
                 borderRadius: BorderRadius.circular(16.r),
-                border: Border.all(color: AppColors.border.withOpacity(0.5)),
+                border: Border.all(
+                  color: AppColors.border.withValues(alpha: 0.5),
+                ),
               ),
               child: Column(
                 children: [
-                  _buildSupplementRow("Vitamin D3 + K2", "Essential for hormone production", "5000 IU / daily"),
+                  _buildSupplementRow(
+                    "Vitamin D3 + K2",
+                    "Essential for hormone production",
+                    "5000 IU / daily",
+                  ),
                   const Divider(color: AppColors.border),
-                  _buildSupplementRow("Magnesium Glycinate", "For sleep and recovery", "400mg / night"),
+                  _buildSupplementRow(
+                    "Magnesium Glycinate",
+                    "For sleep and recovery",
+                    "400mg / night",
+                  ),
                   const Divider(color: AppColors.border),
-                  _buildSupplementRow("Ashwagandha", "Cortisol modulation", "600mg / daily"),
+                  _buildSupplementRow(
+                    "Ashwagandha",
+                    "Cortisol modulation",
+                    "600mg / daily",
+                  ),
                 ],
               ),
             ),
-            
+
             SizedBox(height: 24.h),
             // Bottom Banner Image
-         // Bottom Banner Image
-Container(
-  width: double.infinity,
-  height: 160.h,
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(16.r),
-    gradient: const LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      colors: [
-        Color(0xFF1E3520), 
-        Color(0xFF2C442E), 
-      ],
-    ),
-    boxShadow: const [
-      BoxShadow(
-        color: AppColors.shadow,
-        blurRadius: 10,
-        offset: Offset(0, 4),
-      ),
-    ],
-  ),
-  padding: EdgeInsets.all(16.w),
-  child: Column(
-    mainAxisAlignment: MainAxisAlignment.end,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(
-        children: [
-       
-          Text(
-            "Fuel your recovery",
-            style: TextStyle(
-              fontSize: 18.sp,
-              fontWeight: FontWeight.bold,
-              color: AppColors.white,
+            // Bottom Banner Image
+            Container(
+              width: double.infinity,
+              height: 160.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.r),
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xFF1E3520), Color(0xFF2C442E)],
+                ),
+                boxShadow: const [
+                  BoxShadow(
+                    color: AppColors.shadow,
+                    blurRadius: 10,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Fuel your recovery",
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 6.h),
+                  Text(
+                    "Healthy fats are crucial for hormone balance and testosterone synthesis.",
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: AppColors.white.withValues(alpha: 0.8),
+                      height: 1.3,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
-      ),
-      SizedBox(height: 6.h),
-      Text(
-        "Healthy fats are crucial for hormone balance and testosterone synthesis.",
-        style: TextStyle(
-          fontSize: 12.sp,
-          color: AppColors.white.withOpacity(0.8),
-          height: 1.3,
-        ),
-      ),
-    ],
-  ),
-),
           ],
         ),
       ),
@@ -196,11 +212,31 @@ Container(
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(title, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
-              Text(subtitle, style: TextStyle(fontSize: 11.sp, color: AppColors.textSecondary)),
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+              Text(
+                subtitle,
+                style: TextStyle(
+                  fontSize: 11.sp,
+                  color: AppColors.textSecondary,
+                ),
+              ),
             ],
           ),
-          Text(dosage, style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w500, color: AppColors.textPrimary)),
+          Text(
+            dosage,
+            style: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textPrimary,
+            ),
+          ),
         ],
       ),
     );

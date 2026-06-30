@@ -1,8 +1,6 @@
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:aurahealth/core/theme/app_colors.dart';
-import 'package:aurahealth/core/theme/app_colors.dart';
 
 class ProfileTileData {
   final IconData icon;
@@ -23,18 +21,22 @@ class ProfileGroupCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: AppColors.background,
+    return Material(
+      color: AppColors.background,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.border.withOpacity(0.5), width: 1.w),
+        side: BorderSide(
+          color: AppColors.border.withValues(alpha: 0.5),
+          width: 1.w,
+        ),
       ),
+      clipBehavior: Clip.antiAlias,
       child: ListView.separated(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: items.length,
         separatorBuilder: (context, index) => Divider(
-          color: AppColors.border.withOpacity(0.4),
+          color: AppColors.border.withValues(alpha: 0.4),
           height: 1.h,
           indent: 50.w,
         ),
@@ -42,7 +44,11 @@ class ProfileGroupCard extends StatelessWidget {
           final item = items[index];
           return ListTile(
             dense: true,
-            leading: Icon(item.icon, color: AppColors.textSecondary, size: 22.sp),
+            leading: Icon(
+              item.icon,
+              color: AppColors.textSecondary,
+              size: 22.sp,
+            ),
             title: Text(
               item.title,
               style: TextStyle(
@@ -51,7 +57,11 @@ class ProfileGroupCard extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            trailing: Icon(Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 14.sp),
+            trailing: Icon(
+              Icons.arrow_forward_ios,
+              color: AppColors.textSecondary,
+              size: 14.sp,
+            ),
             onTap: item.onTap,
           );
         },
@@ -74,26 +84,36 @@ class SettingsSingleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 12.h),
-      decoration: BoxDecoration(
+    return Padding(
+      padding: EdgeInsets.only(bottom: 12.h),
+      child: Material(
         color: AppColors.background,
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.border.withOpacity(0.5), width: 1.w),
-      ),
-      child: ListTile(
-      //backgroundColor: AppColors.background,
-        leading: Icon(icon, color: AppColors.textSecondary, size: 22.sp),
-        title: Text(
-          title,
-          style: TextStyle(
-            color: AppColors.textPrimary,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w500,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+          side: BorderSide(
+            color: AppColors.border.withValues(alpha: 0.5),
+            width: 1.w,
           ),
         ),
-        trailing: Icon(Icons.arrow_forward_ios, color: AppColors.textSecondary, size: 14.sp),
-        onTap: onTap,
+        clipBehavior: Clip.antiAlias,
+        child: ListTile(
+          //backgroundColor: AppColors.background,
+          leading: Icon(icon, color: AppColors.textSecondary, size: 22.sp),
+          title: Text(
+            title,
+            style: TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+            color: AppColors.textSecondary,
+            size: 14.sp,
+          ),
+          onTap: onTap,
+        ),
       ),
     );
   }

@@ -86,8 +86,10 @@ class MacroNutrientCard extends StatelessWidget {
             child: LinearProgressIndicator(
               value: progress,
               minHeight: 6.h,
-              backgroundColor: AppColors.border.withOpacity(0.5),
-              valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
+              backgroundColor: AppColors.border.withValues(alpha: 0.5),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppColors.primary,
+              ),
             ),
           ),
         ],

@@ -1,5 +1,6 @@
 import 'package:aurahealth/feature/auth/forgot_password/screen/forgot_password.dart';
 import 'package:aurahealth/feature/auth/signup/screen/signup_screen.dart';
+import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -166,7 +167,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.offNamed(
+                                BottomNavBarScreen.bottomNavBarScreen,
+                              );
+                            },
                             child: Text("Sing In"),
                           ),
                         ),

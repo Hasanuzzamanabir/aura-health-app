@@ -25,7 +25,7 @@ class WideTrackingCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.border.withOpacity(0.5)),
+        border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
         boxShadow: const [
           BoxShadow(
             color: AppColors.shadow,
@@ -51,7 +51,8 @@ class WideTrackingCard extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.end, // এখানে ঠিক করা হয়েছে
+                crossAxisAlignment:
+                    CrossAxisAlignment.end, // এখানে ঠিক করা হয়েছে
                 children: [
                   Text(
                     value,

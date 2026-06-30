@@ -34,9 +34,13 @@ class BiomarkerCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.border.withOpacity(0.5)),
+        border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
         boxShadow: const [
-          BoxShadow(color: AppColors.shadow, blurRadius: 10, offset: Offset(0, 4)),
+          BoxShadow(
+            color: AppColors.shadow,
+            blurRadius: 10,
+            offset: Offset(0, 4),
+          ),
         ],
       ),
       child: Column(
@@ -56,10 +60,10 @@ class BiomarkerCard extends StatelessWidget {
                       color: AppColors.textPrimary,
                     ),
                   ),
-                  if (isUpArrow != null) ...[
+                  ...[
                     SizedBox(width: 4.w),
                     Icon(
-                      isUpArrow! ? Icons.arrow_upward : Icons.arrow_downward,
+                      isUpArrow ? Icons.arrow_upward : Icons.arrow_downward,
                       color: statusColor,
                       size: 16.sp,
                     ),
@@ -96,9 +100,12 @@ class BiomarkerCard extends StatelessWidget {
                     ],
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 8.w,
+                      vertical: 2.h,
+                    ),
                     decoration: BoxDecoration(
-                      color: statusColor.withOpacity(0.1),
+                      color: statusColor.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(4.r),
                     ),
                     child: Text(
@@ -143,8 +150,20 @@ class BiomarkerCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(minRange, style: TextStyle(fontSize: 10.sp, color: AppColors.textSecondary)),
-              Text(maxRange, style: TextStyle(fontSize: 10.sp, color: AppColors.textSecondary)),
+              Text(
+                minRange,
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+              Text(
+                maxRange,
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: AppColors.textSecondary,
+                ),
+              ),
             ],
           ),
         ],

@@ -58,12 +58,12 @@ class OnboardingStepsScreen extends StatelessWidget {
                 controller: controller.pageController,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  _buildStep1TellUsAboutYourself(context, controller),
-                  _buildStep2ChooseGoals(context, controller),
-                  _buildStep3FoodPreferences(context, controller),
-                  _buildStep4ConnectDevices(context, controller),
-                  _buildStep5Lifestyle(context, controller),
-                  _buildStep6GeneratingPlan(context, controller),
+                  _Step1TellUsAboutYourself(controller: controller),
+                  _Step2ChooseGoals(controller: controller),
+                  _Step3FoodPreferences(controller: controller),
+                  _Step4ConnectDevices(controller: controller),
+                  _Step5Lifestyle(controller: controller),
+                  _Step6GeneratingPlan(controller: controller),
                 ],
               ),
             ),
@@ -81,19 +81,13 @@ class OnboardingStepsScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          controller.currentStep.value == 4
-                              ? "Create Plan "
-                              : "Next",
+                        const Text("Next"),
+                        SizedBox(width: 8.w),
+                        Icon(
+                          Icons.arrow_forward_rounded,
+                          color: AppColors.white,
+                          size: 18.sp,
                         ),
-                        if (controller.currentStep.value != 4) ...[
-                          SizedBox(width: 8.w),
-                          Icon(
-                            Icons.arrow_forward_rounded,
-                            color: AppColors.white,
-                            size: 18.sp,
-                          ),
-                        ],
                       ],
                     ),
                   ),
@@ -105,12 +99,16 @@ class OnboardingStepsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // STEP 1: Tell Us About Yourself
-  Widget _buildStep1TellUsAboutYourself(
-    BuildContext context,
-    OnboardingController controller,
-  ) {
+// STEP 1: Tell Us About Yourself
+class _Step1TellUsAboutYourself extends StatelessWidget {
+  final OnboardingController controller;
+
+  const _Step1TellUsAboutYourself({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
@@ -288,12 +286,16 @@ class OnboardingStepsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // STEP 2: Choose Goals
-  Widget _buildStep2ChooseGoals(
-    BuildContext context,
-    OnboardingController controller,
-  ) {
+// STEP 2: Choose Goals
+class _Step2ChooseGoals extends StatelessWidget {
+  final OnboardingController controller;
+
+  const _Step2ChooseGoals({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
@@ -391,12 +393,16 @@ class OnboardingStepsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // STEP 3: Food Preferences
-  Widget _buildStep3FoodPreferences(
-    BuildContext context,
-    OnboardingController controller,
-  ) {
+// STEP 3: Food Preferences
+class _Step3FoodPreferences extends StatelessWidget {
+  final OnboardingController controller;
+
+  const _Step3FoodPreferences({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
@@ -577,12 +583,16 @@ class OnboardingStepsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // STEP 4: Connect your devices
-  Widget _buildStep4ConnectDevices(
-    BuildContext context,
-    OnboardingController controller,
-  ) {
+// STEP 4: Connect your devices
+class _Step4ConnectDevices extends StatelessWidget {
+  final OnboardingController controller;
+
+  const _Step4ConnectDevices({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
     final List<Map<String, dynamic>> devices = [
       {
         "name": "Apple Health",
@@ -719,12 +729,16 @@ class OnboardingStepsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // STEP 5: Lifestyle
-  Widget _buildStep5Lifestyle(
-    BuildContext context,
-    OnboardingController controller,
-  ) {
+// STEP 5: Lifestyle
+class _Step5Lifestyle extends StatelessWidget {
+  final OnboardingController controller;
+
+  const _Step5Lifestyle({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: Column(
@@ -750,8 +764,7 @@ class OnboardingStepsScreen extends StatelessWidget {
 
           // Workout Frequency Slider
           Obx(() {
-            return _buildSliderBlock(
-              context: context,
+            return _SliderBlock(
               title: "Workout Frequency",
               value: controller.workoutFrequency.value,
               onChanged: controller.setWorkoutFrequency,
@@ -762,8 +775,7 @@ class OnboardingStepsScreen extends StatelessWidget {
 
           // Average Sleep Slider
           Obx(() {
-            return _buildSliderBlock(
-              context: context,
+            return _SliderBlock(
               title: "Average Sleep",
               value: controller.averageSleep.value,
               onChanged: controller.setAverageSleep,
@@ -774,8 +786,7 @@ class OnboardingStepsScreen extends StatelessWidget {
 
           // Stress Level Slider
           Obx(() {
-            return _buildSliderBlock(
-              context: context,
+            return _SliderBlock(
               title: "Stress Level",
               value: controller.stressLevel.value,
               onChanged: controller.setStressLevel,
@@ -787,16 +798,26 @@ class OnboardingStepsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // Reusable Slider Block Widget helper
-  Widget _buildSliderBlock({
-    required BuildContext context,
-    required String title,
-    required double value,
-    required ValueChanged<double> onChanged,
-    required String leftLabel,
-    required String rightLabel,
-  }) {
+// Reusable Slider Block Widget helper class
+class _SliderBlock extends StatelessWidget {
+  final String title;
+  final double value;
+  final ValueChanged<double> onChanged;
+  final String leftLabel;
+  final String rightLabel;
+
+  const _SliderBlock({
+    required this.title,
+    required this.value,
+    required this.onChanged,
+    required this.leftLabel,
+    required this.rightLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -849,12 +870,16 @@ class OnboardingStepsScreen extends StatelessWidget {
       ],
     );
   }
+}
 
-  // STEP 6: AI Generation Loading Screen
-  Widget _buildStep6GeneratingPlan(
-    BuildContext context,
-    OnboardingController controller,
-  ) {
+// STEP 6: AI Generation Loading Screen
+class _Step6GeneratingPlan extends StatelessWidget {
+  final OnboardingController controller;
+
+  const _Step6GeneratingPlan({required this.controller});
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 24.w),
       child: Column(
@@ -893,21 +918,18 @@ class OnboardingStepsScreen extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildCheckItem(context, "Analyzing sleep", progress >= 20),
-                  _buildCheckItem(
-                    context,
-                    "Analyzing recovery",
-                    progress >= 45,
+                  _CheckItem(text: "Analyzing sleep", isDone: progress >= 20),
+                  _CheckItem(
+                    text: "Analyzing recovery",
+                    isDone: progress >= 45,
                   ),
-                  _buildCheckItem(
-                    context,
-                    "Analyzing activity",
-                    progress >= 70,
+                  _CheckItem(
+                    text: "Analyzing activity",
+                    isDone: progress >= 70,
                   ),
-                  _buildCheckItem(
-                    context,
-                    "Analyzing nutrition",
-                    progress >= 90,
+                  _CheckItem(
+                    text: "Analyzing nutrition",
+                    isDone: progress >= 90,
                   ),
                 ],
               );
@@ -918,9 +940,17 @@ class OnboardingStepsScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // Helper checklist item
-  Widget _buildCheckItem(BuildContext context, String text, bool isDone) {
+// Helper checklist item class
+class _CheckItem extends StatelessWidget {
+  final String text;
+  final bool isDone;
+
+  const _CheckItem({required this.text, required this.isDone});
+
+  @override
+  Widget build(BuildContext context) {
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 300),
       opacity: isDone ? 1.0 : 0.4,

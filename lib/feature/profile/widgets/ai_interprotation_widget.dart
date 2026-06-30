@@ -19,14 +19,18 @@ class AiInterpretationWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.border.withOpacity(0.5)),
+        border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.psychology_alt_outlined, color: AppColors.primary, size: 22.sp),
+              Icon(
+                Icons.psychology_alt_outlined,
+                color: AppColors.primary,
+                size: 22.sp,
+              ),
               SizedBox(width: 8.w),
               Text(
                 "AI Interpretation",
@@ -42,14 +46,18 @@ class AiInterpretationWidget extends StatelessWidget {
           SizedBox(height: 12.h),
           Text(
             interpretationText,
-            style: TextStyle(fontSize: 13.sp, color: AppColors.textPrimary, height: 1.4),
+            style: TextStyle(
+              fontSize: 13.sp,
+              color: AppColors.textPrimary,
+              height: 1.4,
+            ),
           ),
           SizedBox(height: 16.h),
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(12.w),
             decoration: BoxDecoration(
-              color: AppColors.primaryLight.withOpacity(0.5),
+              color: AppColors.primaryLight.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(12.r),
             ),
             child: Column(
@@ -57,27 +65,43 @@ class AiInterpretationWidget extends StatelessWidget {
               children: [
                 Text(
                   "Protocol Adjustments",
-                  style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold, color: AppColors.primaryDark),
+                  style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryDark,
+                  ),
                 ),
                 SizedBox(height: 8.h),
-                ...protocols.map((protocol) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 4.h),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("• ", style: TextStyle(color: AppColors.primaryDark, fontWeight: FontWeight.bold)),
-                          Expanded(
-                            child: Text(
-                              protocol,
-                              style: TextStyle(fontSize: 12.sp, color: AppColors.textPrimary, height: 1.3),
+                ...protocols.map(
+                  (protocol) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 4.h),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "• ",
+                          style: TextStyle(
+                            color: AppColors.primaryDark,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            protocol,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: AppColors.textPrimary,
+                              height: 1.3,
                             ),
                           ),
-                        ],
-                      ),
-                    )),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
