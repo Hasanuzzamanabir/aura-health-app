@@ -19,11 +19,11 @@ class MealInfoRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        _buildInfoItem(Icons.access_time, time),
+        _buildInfoItem(Icons.access_time_rounded, time),
         SizedBox(width: 20.w),
-        _buildInfoItem(Icons.restaurant_menu, difficulty),
+        _buildInfoItem(Icons.local_fire_department_rounded, difficulty),
         SizedBox(width: 20.w),
-        _buildInfoItem(Icons.people_outline, serving),
+        _buildInfoItem(Icons.room_service_outlined, serving),
       ],
     );
   }
