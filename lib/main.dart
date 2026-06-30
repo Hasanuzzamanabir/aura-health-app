@@ -1,5 +1,5 @@
+import 'package:aurahealth/app.dart';
 import 'package:flutter/material.dart';
-import 'package:orange/app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

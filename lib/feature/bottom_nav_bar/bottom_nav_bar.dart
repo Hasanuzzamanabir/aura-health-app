@@ -1,14 +1,14 @@
+import 'package:aurahealth/core/theme/app_colors.dart';
+import 'package:aurahealth/core/utils/image_path.dart';
+import 'package:aurahealth/feature/ai_section/view/ai_chat.dart';
+import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar_controller.dart';
+import 'package:aurahealth/feature/home/view/home.dart';
+import 'package:aurahealth/feature/meal_section/view/meal_view.dart';
+import 'package:aurahealth/feature/profile/view/profile.dart';
+import 'package:aurahealth/feature/recipe_section/view/recipe_section_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:orange/core/utils/app_colors.dart';
-import 'package:orange/core/utils/icon_path.dart';
-import 'package:orange/feature/ai_section/view/ai_chat.dart';
-import 'package:orange/feature/bottom_nav_bar/bottom_nav_bar_controller.dart';
-import 'package:orange/feature/home/view/home.dart';
-import 'package:orange/feature/meal_section/view/meal_view.dart';
-import 'package:orange/feature/recipe_section/view/recipe_section_screen.dart';
-import 'package:orange/feature/profile/view/profile.dart';
 
 class AppFontScale {
   static double legacy(double base, double level, {required int divisor}) {
@@ -43,6 +43,8 @@ class MainScreen extends StatelessWidget {
 
 class BottomNavBarScreen extends GetView<BottomNavController> {
   const BottomNavBarScreen({super.key});
+
+  static const String bottomNavBarScreen = '/bottomNavBarScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +84,7 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _AppBottomNavItem(
-                      icon: IconPath.homeIcon,
+                      icon: ImagePath.homeIcon,
                       label: 'Home',
                       index: BottomNavIndex.home.index,
                       currentIndex: currentIndex,
@@ -90,7 +92,7 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
                       onTap: controller.changePage,
                     ),
                     _AppBottomNavItem(
-                      icon: IconPath.mealIcon,
+                      icon: ImagePath.mealIcon,
                       label: 'Meal Plan',
                       index: BottomNavIndex.mealPlan.index,
                       currentIndex: currentIndex,
@@ -99,15 +101,15 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
                     ),
                     SizedBox(width: 56.w),
                     _AppBottomNavItem(
-                      icon: IconPath.recipeIcon,
-                      label: 'Recipes',
-                      index: BottomNavIndex.recipes.index,
+                      icon: ImagePath.recipeIcon,
+                      label: 'Kitchen',
+                      index: BottomNavIndex.kitchen.index,
                       currentIndex: currentIndex,
                       fontLevel: level,
                       onTap: controller.changePage,
                     ),
                     _AppBottomNavItem(
-                      icon: IconPath.profileIcon,
+                      icon: ImagePath.profileIcon,
                       label: 'Profile',
                       index: BottomNavIndex.profile.index,
                       currentIndex: currentIndex,
@@ -120,7 +122,7 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
             ),
           ),
           Positioned(
-            top: 4.h,
+            top: -2.h,
             left: 0,
             right: 0,
             child: Align(
@@ -142,7 +144,14 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
                       height: 60.h,
                       width: 60.w,
                       decoration: BoxDecoration(
-                        color: AppColors.primary,
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.aiGradientStart,
+                            AppColors.aiGradientEnd,
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
@@ -156,7 +165,7 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            IconPath.aiIcon,
+                            ImagePath.aiIcon,
                             height: 22.h,
                             width: 22.w,
                             color: AppColors.background,

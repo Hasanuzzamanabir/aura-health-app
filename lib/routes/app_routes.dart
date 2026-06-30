@@ -1,22 +1,21 @@
+import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar.dart';
 import 'package:get/get.dart';
-import 'package:orange/feature/bottom_nav_bar/bottom_nav_bar.dart';
-import 'package:orange/feature/profile/view/personal_information.dart';
+import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
+import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:aurahealth/feature/splash_screen/splash_screen.dart';
 
 class AppRoutes {
-  static const String bottomNavBarScreen = '/BottomNavBarScreen';
-  static const String personalInformationScreen = '/PersonalInformationScreen';
-  
-  static String getBottomNavBarScreen() => bottomNavBarScreen;
-  static String getPersonalInformationScreen() => personalInformationScreen;
-
   static List<GetPage> routes = [
+    //Bottom Nav bar
     GetPage(
-      name: bottomNavBarScreen,
+      name: BottomNavBarScreen.bottomNavBarScreen,
       page: () => const MainScreen(),
     ),
-    GetPage(
-      name: personalInformationScreen,
-      page: () => const PersonalInformationScreen(),
-    ),
+
+    //Splash Screen
+    GetPage(name: SplashScreen.splashScreen, page: () => const SplashScreen()),
+
+    //Login Screen
+    GetPage(name: LoginScreen.loginScreen, page: () => const LoginScreen()),
   ];
 }

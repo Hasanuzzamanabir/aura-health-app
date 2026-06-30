@@ -1,9 +1,10 @@
+import 'package:aurahealth/core/theme/app_theme.dart';
+import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar.dart';
+import 'package:aurahealth/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:orange/core/utils/app_colors.dart';
-import 'package:orange/routes/app_routes.dart';
-
+import 'feature/splash_screen/splash_screen.dart';
 class AuraHealthApp extends StatefulWidget {
   const AuraHealthApp({super.key});
 
@@ -21,16 +22,9 @@ class _AuraHealthAppState extends State<AuraHealthApp> {
       builder: (context, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.bottomNavBarScreen,
+          initialRoute: BottomNavBarScreen.bottomNavBarScreen,
           getPages: AppRoutes.routes,
-          theme: ThemeData(
-            scaffoldBackgroundColor: AppColors.background,
-            appBarTheme: const AppBarTheme(
-              backgroundColor: AppColors.background,
-              elevation: 0,
-              scrolledUnderElevation: 0,
-            ),
-          ),
+          theme: AppTheme.lightTheme,
         );
       },
     );

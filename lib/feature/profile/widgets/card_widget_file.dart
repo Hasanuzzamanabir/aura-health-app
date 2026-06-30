@@ -1,6 +1,8 @@
+import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:orange/core/utils/app_colors.dart';
+import 'package:aurahealth/core/theme/app_colors.dart';
+import 'package:aurahealth/core/theme/app_colors.dart';
 
 class ProfileTileData {
   final IconData icon;
@@ -80,7 +82,7 @@ class SettingsSingleCard extends StatelessWidget {
         border: Border.all(color: AppColors.border.withOpacity(0.5), width: 1.w),
       ),
       child: ListTile(
-        dense: true,
+      //backgroundColor: AppColors.background,
         leading: Icon(icon, color: AppColors.textSecondary, size: 22.sp),
         title: Text(
           title,

@@ -1,11 +1,18 @@
+import 'package:aurahealth/core/theme/app_colors.dart';
+import 'package:aurahealth/core/widget/custom_app_bar.dart';
+import 'package:aurahealth/feature/profile/view/bio_markers.dart';
+import 'package:aurahealth/feature/profile/view/health_summary_page.dart';
+import 'package:aurahealth/feature/profile/view/personal_information.dart';
+import 'package:aurahealth/feature/profile/view/subscription_screen.dart';
+import 'package:aurahealth/feature/profile/widgets/card_widget_file.dart';
+import 'package:aurahealth/feature/settings/view/about_screen.dart';
+import 'package:aurahealth/feature/settings/view/privecy_screen.dart';
+import 'package:aurahealth/feature/settings/view/trams_and_condition_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:orange/core/utils/app_colors.dart';
-import 'package:orange/core/widgets/custom_app_bar.dart';
-import 'package:orange/feature/profile/view/personal_information.dart';
-import 'package:orange/feature/profile/widgets/card_widget_file.dart';
+
 // import 'custom_app_bar.dart'; 
 // import 'profile_widgets.dart'; 
 
@@ -19,9 +26,15 @@ class ProfileScreen extends StatelessWidget {
         Get.to(() => const PersonalInformationScreen());
       }),
       ProfileTileData(icon: Icons.link_rounded, title: 'Connected Devices', onTap: () {}),
-      ProfileTileData(icon: Icons.monitor_heart_outlined, title: 'Health Summary', onTap: () {}),
-      ProfileTileData(icon: Icons.analytics_outlined, title: 'Biomarkers', onTap: () {}),
-      ProfileTileData(icon: Icons.credit_card_outlined, title: 'Subscription', onTap: () {}),
+      ProfileTileData(icon: Icons.monitor_heart_outlined, title: 'Health Summary', onTap: () {
+        Get.to(() => const HealthSummaryScreen());
+      }),
+      ProfileTileData(icon: Icons.analytics_outlined, title: 'Biomarkers', onTap: () {
+        Get.to(() => const BiomarkerScreen());
+      }),
+      ProfileTileData(icon: Icons.credit_card_outlined, title: 'Subscription', onTap: () {
+        Get.to(() => const SubscriptionScreen());
+      }),
     ];
 
     return Scaffold(
@@ -106,22 +119,29 @@ class ProfileScreen extends StatelessWidget {
             SettingsSingleCard(
               icon: Icons.info_outline_rounded,
               title: 'About',
-              onTap: () {},
+              onTap: () {
+Get.to(() => const AboutScreen());
+              },
             ),
             SettingsSingleCard(
               icon: Icons.shield_outlined,
               title: 'Privacy Policy',
-              onTap: () {},
+              onTap: ()   {
+                Get.to(() => const PrivacyPolicyScreen());
+              },
             ),
             SettingsSingleCard(
               icon: Icons.shield_outlined,
               title: 'Trams & Condition',
-              onTap: () {},
+              onTap: () {
+                Get.to(() => const TermsConditionScreen());
+              },
             ),
             SettingsSingleCard(
               icon: Icons.help_outline_rounded,
               title: 'Help and support',
-              onTap: () {},
+              onTap: () {
+              },
             ),
             SizedBox(height: 20.h),
           ],
