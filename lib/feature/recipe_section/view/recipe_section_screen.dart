@@ -8,7 +8,9 @@ import 'package:aurahealth/feature/recipe_section/controller/recipe_controller.d
 import 'package:aurahealth/feature/recipe_section/model/recipe_model.dart';
 
 class RecipeSectionScreen extends StatelessWidget {
-  const RecipeSectionScreen({super.key});
+  const RecipeSectionScreen({super.key, this.swapMealPlan = false});
+
+  final bool swapMealPlan;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class RecipeSectionScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFF9FAFB),
-      appBar: const CustomAppBar(title: 'Recipes', isBack: false),
+      appBar:  CustomAppBar(title: 'Recipes', isBack: swapMealPlan == true, ),
       body: SafeArea(
         child: Column(
           children: [
