@@ -1,3 +1,4 @@
+import 'package:aurahealth/feature/ai_section/view/ai_chat.dart';
 import 'package:aurahealth/feature/auth/change_password/screen/change_password.dart';
 import 'package:aurahealth/feature/auth/forgot_password/screen/forgot_password.dart';
 import 'package:aurahealth/feature/auth/otp_screen/screen/otp_screen.dart';
@@ -17,6 +18,12 @@ class AppRoutes {
     GetPage(
       name: BottomNavBarScreen.bottomNavBarScreen,
       page: () => const MainScreen(),
+    ),
+
+    //AI Chat Screen
+    GetPage(
+      name: AiChatScreen.aiChatScreen,
+      page: () => const AiChatScreen(),
     ),
 
     //Splash Screen

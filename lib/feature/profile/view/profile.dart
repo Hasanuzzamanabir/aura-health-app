@@ -161,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
               icon: Icons.help_outline_rounded,
               title: 'Help and support',
               onTap: () {
-                Get.to( () => const HelpSupportScreen());
+                Get.to(() => const HelpSupportScreen());
               },
             ),
             SizedBox(height: 20.h),
