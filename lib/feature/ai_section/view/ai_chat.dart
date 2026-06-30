@@ -8,7 +8,6 @@ import 'package:aurahealth/core/widget/custom_app_bar.dart';
 
 class AiChatScreen extends StatefulWidget {
   const AiChatScreen({super.key});
-
   static const String aiChatScreen = '/aiChatScreen';
 
   @override
@@ -42,42 +41,37 @@ class _AiChatScreenState extends State<AiChatScreen> {
               child: ListView(
                 physics: const BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-                children: [
-                  const ChatBubbleWidget(
-                    text: "Hi Emma! How can I help you today?",
-                    isMe: false,
-                  ),
-                  const ChatBubbleWidget(
-                    text: "What should I eat after my workout?",
-                    isMe: true,
-                  ),
-                  ChatBubbleWidget(
-                    text:
-                        "Great question! Here are some high-protein options to support muscle recovery.",
-                    isMe: false,
-                    customContent: SizedBox(
-                      height: 155.h,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        children: const [
-                          SuggestedMealCard(
-                            imageUrl:
-                                "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&q=80",
-                            title: "Protein Smoothie",
-                            calories: "300",
-                          ),
-                          SuggestedMealCard(
-                            imageUrl:
-                                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
-                            title: "Chicken Bowl",
-                            calories: "520",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                itemCount: _messages.length,
+                itemBuilder: (context, index) {
+                  final msg = _messages[index];
+                  return ChatBubbleWidget(
+                    text: msg["text"],
+                    isMe: msg["isMe"],
+                    customContent: msg["hasCustomContent"]
+                        ? SizedBox(
+                            height: 155.h,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              physics: const BouncingScrollPhysics(),
+                              children: const [
+                                SuggestedMealCard(
+                                  imageUrl:
+                                      "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&q=80",
+                                  title: "Protein Smoothie",
+                                  calories: "300",
+                                ),
+                                SuggestedMealCard(
+                                  imageUrl:
+                                      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
+                                  title: "Chicken Bowl",
+                                  calories: "520",
+                                ),
+                              ],
+                            ),
+                          )
+                        : null,
+                  );
+                },
               ),
             ),
             Padding(
@@ -93,6 +87,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
                   SizedBox(height: 12.h),
                   TextFormField(
                     controller: _messageController,
+                    onFieldSubmitted: (val) => _sendMessage(val),
                     decoration: InputDecoration(
                       hintText: "Type a message...",
                       hintStyle: TextStyle(
@@ -107,11 +102,8 @@ class _AiChatScreenState extends State<AiChatScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             GestureDetector(
-                              onTap: () {
-                                if (_messageController.text.trim().isNotEmpty) {
-                                  _messageController.clear();
-                                }
-                              },
+                              onTap: () =>
+                                  _sendMessage(_messageController.text),
                               child: Container(
                                 padding: EdgeInsets.all(8.w),
                                 decoration: const BoxDecoration(
