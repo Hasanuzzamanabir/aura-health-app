@@ -110,8 +110,8 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
                     SizedBox(width: 56.w),
                     _AppBottomNavItem(
                       icon: ImagePath.recipeIcon,
-                      label: 'Kitchen',
-                      index: BottomNavIndex.kitchen.index,
+                      label: 'Recipes',
+                      index: BottomNavIndex.recipe.index,
                       currentIndex: currentIndex,
                       fontLevel: level,
                       onTap: controller.changePage,

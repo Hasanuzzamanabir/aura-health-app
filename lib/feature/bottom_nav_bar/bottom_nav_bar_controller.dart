@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-enum BottomNavIndex { home, mealPlan, aiCoach, kitchen, profile }
+enum BottomNavIndex { home, mealPlan, aiCoach, recipe, profile }
 
 class BottomNavController extends GetxController {
   var fontLevel = 1.0.obs;
