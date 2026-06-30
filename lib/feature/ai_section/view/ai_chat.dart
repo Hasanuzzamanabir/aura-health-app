@@ -6,9 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/widget/custom_app_bar.dart';
 
+
 class AiChatScreen extends StatefulWidget {
   const AiChatScreen({super.key});
-
   static const String aiChatScreen = '/aiChatScreen';
 
   @override
@@ -40,7 +40,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
   final List<String> _suggestions = [
     "Adjust my calories",
     "Recovery meal ideas",
-    "Workout plan",
+    "Workout plan"
   ];
 
   void _sendMessage(String text) {
@@ -78,7 +78,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.surface,
-      appBar: const CustomAppBar(title: "AI Coach", isBack: true),
+      appBar: const CustomAppBar(title: "AI Coach"),
       body: SafeArea(
         child: Column(
           children: [
@@ -87,7 +87,6 @@ class _AiChatScreenState extends State<AiChatScreen> {
                 controller: _scrollController,
                 physics: const BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-<<<<<<< HEAD
                 itemCount: _messages.length,
                 itemBuilder: (context, index) {
                   final msg = _messages[index];
@@ -117,44 +116,6 @@ class _AiChatScreenState extends State<AiChatScreen> {
                         : null,
                   );
                 },
-=======
-                children: [
-                  const ChatBubbleWidget(
-                    text: "Hi Emma! How can I help you today?",
-                    isMe: false,
-                  ),
-                  const ChatBubbleWidget(
-                    text: "What should I eat after my workout?",
-                    isMe: true,
-                  ),
-                  ChatBubbleWidget(
-                    text:
-                        "Great question! Here are some high-protein options to support muscle recovery.",
-                    isMe: false,
-                    customContent: SizedBox(
-                      height: 155.h,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        children: const [
-                          SuggestedMealCard(
-                            imageUrl:
-                                "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&q=80",
-                            title: "Protein Smoothie",
-                            calories: "300",
-                          ),
-                          SuggestedMealCard(
-                            imageUrl:
-                                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
-                            title: "Chicken Bowl",
-                            calories: "520",
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
->>>>>>> 47fb3b0bb655014028239f643916d5856e6a76a5
               ),
             ),
             Padding(
@@ -170,10 +131,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
                   SizedBox(height: 12.h),
                   TextFormField(
                     controller: _messageController,
-<<<<<<< HEAD
                     onFieldSubmitted: (val) => _sendMessage(val),
-=======
->>>>>>> 47fb3b0bb655014028239f643916d5856e6a76a5
                     decoration: InputDecoration(
                       hintText: "Type a message...",
                       hintStyle: TextStyle(
@@ -188,30 +146,14 @@ class _AiChatScreenState extends State<AiChatScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             GestureDetector(
-<<<<<<< HEAD
                               onTap: () => _sendMessage(_messageController.text),
-=======
-                              onTap: () {
-                                if (_messageController.text.trim().isNotEmpty) {
-                                  _messageController.clear();
-                                }
-                              },
->>>>>>> 47fb3b0bb655014028239f643916d5856e6a76a5
                               child: Container(
                                 padding: EdgeInsets.all(8.w),
                                 decoration: const BoxDecoration(
                                   color: AppColors.primary,
                                   shape: BoxShape.circle,
                                 ),
-<<<<<<< HEAD
                                 child: Icon(Icons.send, color: AppColors.white, size: 16.sp),
-=======
-                                child: Icon(
-                                  Icons.send,
-                                  color: AppColors.white,
-                                  size: 16.sp,
-                                ),
->>>>>>> 47fb3b0bb655014028239f643916d5856e6a76a5
                               ),
                             ),
                           ],
