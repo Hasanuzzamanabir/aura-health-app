@@ -8,6 +8,8 @@ class MealItemTile extends StatelessWidget {
   final String calories;
   final String duration;
   final String placeholderLetter;
+  
+  final dynamic onTap;
 
   const MealItemTile({
     super.key,

@@ -1,6 +1,7 @@
 import 'package:aurahealth/feature/auth/change_password/screen/change_password.dart';
 import 'package:aurahealth/feature/auth/forgot_password/screen/forgot_password.dart';
 import 'package:aurahealth/feature/auth/otp_screen/screen/otp_screen.dart';
+import 'package:aurahealth/feature/notification/view/notification_screen.dart';
 import 'package:aurahealth/feature/success/success_screen.dart';
 import 'package:get/get.dart';
 import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
@@ -26,6 +27,8 @@ class AppRoutes {
 
     //singup screen
     GetPage(name: SignupScreen.signupScreen, page: () => const SignupScreen()),
+    //notification screen
+    GetPage(name: NotificationScreen.notificationScreen, page: () => const NotificationScreen()),
 
     //forgot password screen
     GetPage(
