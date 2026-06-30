@@ -61,7 +61,7 @@ class OnboardingStepsScreen extends StatelessWidget {
                   _Step1TellUsAboutYourself(controller: controller),
                   _Step2ChooseGoals(controller: controller),
                   _Step3FoodPreferences(controller: controller),
-                  _Step4ConnectDevices(controller: controller),
+                  Step4ConnectDevices(controller: controller),
                   _Step5Lifestyle(controller: controller),
                   _Step6GeneratingPlan(controller: controller),
                 ],
@@ -586,10 +586,10 @@ class _Step3FoodPreferences extends StatelessWidget {
 }
 
 // STEP 4: Connect your devices
-class _Step4ConnectDevices extends StatelessWidget {
+class Step4ConnectDevices extends StatelessWidget {
   final OnboardingController controller;
 
-  const _Step4ConnectDevices({required this.controller});
+  const Step4ConnectDevices({required this.controller});
 
   @override
   Widget build(BuildContext context) {
