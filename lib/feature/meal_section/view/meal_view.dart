@@ -1,3 +1,4 @@
+import 'package:aurahealth/feature/meal_section/view/meal_plan_details.dart';
 import 'package:aurahealth/feature/meal_section/widgets/meal_item_tile.dart';
 import 'package:aurahealth/feature/meal_section/widgets/micro_nutrient_card.dart';
 import 'package:aurahealth/feature/meal_section/widgets/weekly_overview_card.dart';
@@ -6,6 +7,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/utils/app_style.dart';
 import 'package:aurahealth/core/widget/custom_app_bar.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 
 class MealScreen extends StatelessWidget {
@@ -21,7 +24,6 @@ class MealScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ১. পুষ্টি উপাদানের গ্রিড (Macro Nutrients Grid)
             GridView.count(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -67,12 +69,10 @@ class MealScreen extends StatelessWidget {
             
             SizedBox(height: 20.h),
             
-            // ২. উইকলি ওভারভিউ ক্যালেন্ডার কার্ড
             const WeeklyOverviewCard(),
             
             SizedBox(height: 24.h),
             
-            // ৩. মিলস হেডার সেকশন
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -93,34 +93,36 @@ class MealScreen extends StatelessWidget {
             
             SizedBox(height: 14.h),
             
-            // ৪. মিলস লিস্ট আইটেমস
-            const MealItemTile(
+             MealItemTile(
               mealType: "Breakfast",
               mealName: "Greek Yogurt Bowl",
               calories: "520",
               duration: "10",
               placeholderLetter: "🥣",
+              onTap: ()  { Get.to(() => const MealPlanDetails()); },
             ),
-            const MealItemTile(
+             MealItemTile(
               mealType: "Snack",
               mealName: "Protein Smoothie",
               calories: "192",
               duration: "5",
               placeholderLetter: "🥛",
+              onTap: ()  { Get.to(() => const MealPlanDetails()); },
             ),
-            const MealItemTile(
+            MealItemTile(
               mealType: "Lunch",
               mealName: "Quinoa Chicken Bowl",
               calories: "600",
               duration: "30",
               placeholderLetter: "🥗",
+              onTap: ()  { Get.to(() => const MealPlanDetails()); },
             ),
-            const MealItemTile(
+             MealItemTile(
               mealType: "Dinner",
               mealName: "Salmon & Veggies",
               calories: "560",
               duration: "25",
-              placeholderLetter: "🐟",
+              placeholderLetter: "🐟", onTap: () { Get.to(() => const MealPlanDetails()); },
             ),
           ],
         ),

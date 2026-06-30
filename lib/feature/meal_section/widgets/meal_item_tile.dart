@@ -16,6 +16,7 @@ class MealItemTile extends StatelessWidget {
     required this.calories,
     required this.duration,
     required this.placeholderLetter,
+    required this.onTap,
   });
 
   @override
