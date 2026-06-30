@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/widget/custom_app_bar.dart';
 
-
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
   static const String notificationScreen = '/notification_screen';
@@ -50,7 +49,8 @@ class NotificationScreen extends StatelessWidget {
                     iconColor: AppColors.primaryDark,
                     iconBackgroundColor: AppColors.primaryLight,
                     title: "AI Insight",
-                    subtitle: "Your recovery is low today. AI adjusted your plan.",
+                    subtitle:
+                        "Your recovery is low today. AI adjusted your plan.",
                     time: "2h ago",
                   ),
                   NotificationTile(
@@ -66,7 +66,8 @@ class NotificationScreen extends StatelessWidget {
                     iconColor: Color(0xFF9B59B6),
                     iconBackgroundColor: Color(0xFFF5EEF8),
                     title: "Plan Updated",
-                    subtitle: "Your meal plan has been updated for better results.",
+                    subtitle:
+                        "Your meal plan has been updated for better results.",
                     time: "1d ago",
                   ),
                 ],

@@ -6,9 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/widget/custom_app_bar.dart';
 
-
 class AiChatScreen extends StatefulWidget {
   const AiChatScreen({super.key});
+
+  static const String aiChatScreen = '/aiChatScreen';
 
   @override
   State<AiChatScreen> createState() => _AiChatScreenState();
@@ -20,7 +21,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
   final List<String> _suggestions = [
     "Adjust my calories",
     "Recovery meal ideas",
-    "Workout plan"
+    "Workout plan",
   ];
 
   @override
@@ -33,7 +34,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.surface,
-      appBar: const CustomAppBar(title: "AI Coach"),
+      appBar: const CustomAppBar(title: "AI Coach", isBack: true),
       body: SafeArea(
         child: Column(
           children: [
@@ -51,7 +52,8 @@ class _AiChatScreenState extends State<AiChatScreen> {
                     isMe: true,
                   ),
                   ChatBubbleWidget(
-                    text: "Great question! Here are some high-protein options to support muscle recovery.",
+                    text:
+                        "Great question! Here are some high-protein options to support muscle recovery.",
                     isMe: false,
                     customContent: SizedBox(
                       height: 155.h,
@@ -60,12 +62,14 @@ class _AiChatScreenState extends State<AiChatScreen> {
                         physics: const BouncingScrollPhysics(),
                         children: const [
                           SuggestedMealCard(
-                            imageUrl: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&q=80",
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&q=80",
                             title: "Protein Smoothie",
                             calories: "300",
                           ),
                           SuggestedMealCard(
-                            imageUrl: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
+                            imageUrl:
+                                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80",
                             title: "Chicken Bowl",
                             calories: "520",
                           ),
@@ -87,45 +91,45 @@ class _AiChatScreenState extends State<AiChatScreen> {
                     },
                   ),
                   SizedBox(height: 12.h),
-                 TextFormField(
-  controller: _messageController,
-  decoration: InputDecoration(
-    hintText: "Type a message...",
-    hintStyle: TextStyle(
-      fontSize: 14.sp,
-      color: AppColors.textSecondary.withOpacity(0.6),
-    ),
-    border: InputBorder.none,
-    suffixIcon: Padding(
-      padding: EdgeInsets.only(right: 6.w),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          GestureDetector(
-            onTap: () {
-              if (_messageController.text.trim().isNotEmpty) {
-                _messageController.clear();
-              }
-            },
-            child: Container(
-              padding: EdgeInsets.all(8.w),
-              decoration: const BoxDecoration(
-                color: AppColors.primary,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.send,
-                color: AppColors.white,
-                size: 16.sp,
-              ),
-            ),
-          ),
-        ],
-      ),
-    ),
-  ),
-),
+                  TextFormField(
+                    controller: _messageController,
+                    decoration: InputDecoration(
+                      hintText: "Type a message...",
+                      hintStyle: TextStyle(
+                        fontSize: 14.sp,
+                        color: AppColors.textSecondary.withOpacity(0.6),
+                      ),
+                      border: InputBorder.none,
+                      suffixIcon: Padding(
+                        padding: EdgeInsets.only(right: 6.w),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                if (_messageController.text.trim().isNotEmpty) {
+                                  _messageController.clear();
+                                }
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(8.w),
+                                decoration: const BoxDecoration(
+                                  color: AppColors.primary,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  Icons.send,
+                                  color: AppColors.white,
+                                  size: 16.sp,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 8.h),
                 ],
               ),

@@ -26,7 +26,7 @@ class MainScreen extends StatelessWidget {
     final List<Widget> pages = [
       const HomeScreen(),
       const MealScreen(),
-      const AiChatScreen(),
+      const SizedBox.shrink(),
       const RecipeSectionScreen(),
       const ProfileScreen(),
     ];
@@ -129,8 +129,7 @@ class BottomNavBarScreen extends GetView<BottomNavController> {
               alignment: Alignment.topCenter,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: () =>
-                    controller.changePage(BottomNavIndex.aiCoach.index),
+                onTap: () => Get.toNamed(AiChatScreen.aiChatScreen),
                 child: Obx(() {
                   final level = controller.fontLevel.value;
                   final currentIndex = controller.currentIndex.value;

@@ -1,5 +1,6 @@
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/widget/custom_app_bar.dart';
+import 'package:aurahealth/feature/help_and_support.dart/view/help_and_support_sreen.dart';
 import 'package:aurahealth/feature/profile/view/bio_marker_screen.dart';
 import 'package:aurahealth/feature/profile/view/health_summary_page.dart';
 import 'package:aurahealth/feature/profile/view/personal_information.dart';
@@ -160,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
               icon: Icons.help_outline_rounded,
               title: 'Help and support',
               onTap: () {
-                Get.to( () => const HelpSupportScreen());
+                Get.to(() => const HelpSupportScreen());
               },
             ),
             SizedBox(height: 20.h),
