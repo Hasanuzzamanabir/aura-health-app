@@ -9,14 +9,6 @@ import 'package:aurahealth/feature/recipe_section/view/recipe_section_screen.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:aurahealth/core/theme/app_colors.dart';
-import 'package:aurahealth/core/utils/image_path.dart';
-import 'package:aurahealth/feature/ai_section/view/ai_chat.dart';
-import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar_controller.dart';
-import 'package:aurahealth/feature/home/view/home.dart';
-import 'package:aurahealth/feature/meal_section/view/meal_view.dart';
-import 'package:aurahealth/feature/recipe_section/view/recipe_section_screen.dart';
-import 'package:aurahealth/feature/profile/view/profile.dart';
 
 class AppFontScale {
   static double legacy(double base, double level, {required int divisor}) {

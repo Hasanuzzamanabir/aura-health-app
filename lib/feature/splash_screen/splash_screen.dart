@@ -3,9 +3,6 @@ import 'package:aurahealth/core/utils/image_path.dart';
 import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:aurahealth/core/theme/app_colors.dart';
-import 'package:aurahealth/core/utils/image_path.dart';
-import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

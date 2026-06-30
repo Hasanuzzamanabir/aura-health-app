@@ -25,7 +25,7 @@ class TrackingCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.border.withOpacity(0.5)),
+        border: Border.all(color: AppColors.border.withValues(alpha: 0.5)),
         boxShadow: const [
           BoxShadow(
             color: AppColors.shadow,

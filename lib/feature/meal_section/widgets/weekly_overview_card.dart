@@ -68,7 +68,11 @@ class WeeklyOverviewCard extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    Icon(Icons.auto_awesome, color: AppColors.primaryDark, size: 12.sp),
+                    Icon(
+                      Icons.auto_awesome,
+                      color: AppColors.primaryDark,
+                      size: 12.sp,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       "AI Optimized",
@@ -88,14 +92,16 @@ class WeeklyOverviewCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: days.map((d) {
-              bool isActive = d["date"] == "24"; // ইমেজ অনুযায়ী ২৪ তারিখ অ্যাক্টিভ
+              bool isActive = d["date"] == "24";
               return Column(
                 children: [
                   Container(
                     width: 38.w,
                     height: 38.w,
                     decoration: BoxDecoration(
-                      color: isActive ? AppColors.primary : AppColors.primaryLight.withOpacity(0.4),
+                      color: isActive
+                          ? AppColors.primary
+                          : AppColors.primaryLight.withValues(alpha: 0.4),
                       borderRadius: BorderRadius.circular(8.r),
                     ),
                     alignment: Alignment.center,
@@ -105,7 +111,9 @@ class WeeklyOverviewCard extends StatelessWidget {
                         fontFamily: "Poppins",
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w600,
-                        color: isActive ? AppColors.white : AppColors.textPrimary.withOpacity(0.7),
+                        color: isActive
+                            ? AppColors.white
+                            : AppColors.textPrimary.withValues(alpha: 0.7),
                       ),
                     ),
                   ),
@@ -115,8 +123,12 @@ class WeeklyOverviewCard extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: "Inter",
                       fontSize: 11.sp,
-                      fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
-                      color: isActive ? AppColors.textPrimary : AppColors.textSecondary,
+                      fontWeight: isActive
+                          ? FontWeight.bold
+                          : FontWeight.normal,
+                      color: isActive
+                          ? AppColors.textPrimary
+                          : AppColors.textSecondary,
                     ),
                   ),
                 ],

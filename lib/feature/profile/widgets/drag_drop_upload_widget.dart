@@ -16,13 +16,17 @@ class DragDropUploadWidget extends StatelessWidget {
         color: AppColors.surface,
         borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
-          color: AppColors.borderFocused.withOpacity(0.4),
-          style: BorderStyle.solid, 
+          color: AppColors.borderFocused.withValues(alpha: 0.4),
+          style: BorderStyle.solid,
         ),
       ),
       child: Column(
         children: [
-          Icon(Icons.file_upload_outlined, size: 40.sp, color: AppColors.textSecondary),
+          Icon(
+            Icons.file_upload_outlined,
+            size: 40.sp,
+            color: AppColors.textSecondary,
+          ),
           SizedBox(height: 12.h),
           Text(
             "Drag & drop your report\nimages here",
@@ -42,7 +46,10 @@ class DragDropUploadWidget extends StatelessWidget {
           SizedBox(height: 8.h),
           Text(
             "Supported formats: JPG, PNG",
-            style: TextStyle(fontSize: 11.sp, color: AppColors.textSecondary.withOpacity(0.7)),
+            style: TextStyle(
+              fontSize: 11.sp,
+              color: AppColors.textSecondary.withValues(alpha: 0.7),
+            ),
           ),
           SizedBox(height: 16.h),
           ElevatedButton(
@@ -50,9 +57,14 @@ class DragDropUploadWidget extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.primaryDark,
               minimumSize: Size(160.w, 40.h),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.r),
+              ),
             ),
-            child: Text("Browse Files", style: TextStyle(fontSize: 14.sp, color: AppColors.white)),
+            child: Text(
+              "Browse Files",
+              style: TextStyle(fontSize: 14.sp, color: AppColors.white),
+            ),
           ),
         ],
       ),

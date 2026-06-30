@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:aurahealth/core/theme/app_colors.dart';
 
 class MealItemTile extends StatelessWidget {
-  final String mealType; // Breakfast, Snack, etc.
+  final String mealType;
   final String mealName;
   final String calories;
   final String duration;
-  final String placeholderLetter; // লোকাল টেস্ট করার জন্য ইমেজের লেটার
+  final String placeholderLetter;
 
   const MealItemTile({
     super.key,
@@ -21,7 +21,7 @@ class MealItemTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-margin: EdgeInsets.only(bottom: 12.h),
+      margin: EdgeInsets.only(bottom: 12.h),
       padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
         color: AppColors.background,
@@ -36,12 +36,11 @@ margin: EdgeInsets.only(bottom: 12.h),
       ),
       child: Row(
         children: [
-          // ইমেজ কন্টেইনার
           Container(
             width: 60.w,
             height: 60.w,
             decoration: BoxDecoration(
-              color: AppColors.border.withOpacity(0.3),
+              color: AppColors.border.withValues(alpha: 0.3),
               borderRadius: BorderRadius.circular(12.r),
             ),
             alignment: Alignment.center,
@@ -51,7 +50,7 @@ margin: EdgeInsets.only(bottom: 12.h),
             ),
           ),
           SizedBox(width: 14.w),
-          // টেক্সট ইনফরমেশন
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,18 +77,34 @@ margin: EdgeInsets.only(bottom: 12.h),
                 SizedBox(height: 6.h),
                 Row(
                   children: [
-                    Icon(Icons.local_fire_department_outlined, size: 14.sp, color: AppColors.textSecondary),
+                    Icon(
+                      Icons.local_fire_department_outlined,
+                      size: 14.sp,
+                      color: AppColors.textSecondary,
+                    ),
                     SizedBox(width: 2.w),
                     Text(
                       "$calories kcal",
-                      style: TextStyle(fontFamily: "Inter", fontSize: 11.sp, color: AppColors.textSecondary),
+                      style: TextStyle(
+                        fontFamily: "Inter",
+                        fontSize: 11.sp,
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                     SizedBox(width: 12.w),
-                    Icon(Icons.access_time, size: 14.sp, color: AppColors.textSecondary),
+                    Icon(
+                      Icons.access_time,
+                      size: 14.sp,
+                      color: AppColors.textSecondary,
+                    ),
                     SizedBox(width: 2.w),
                     Text(
                       "$duration min",
-                      style: TextStyle(fontFamily: "Inter", fontSize: 11.sp, color: AppColors.textSecondary),
+                      style: TextStyle(
+                        fontFamily: "Inter",
+                        fontSize: 11.sp,
+                        color: AppColors.textSecondary,
+                      ),
                     ),
                   ],
                 ),

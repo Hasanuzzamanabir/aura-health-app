@@ -35,7 +35,9 @@ class SubscriptionCard extends StatelessWidget {
             color: AppColors.background,
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(
-              color: isPopular ? AppColors.primary : AppColors.border.withOpacity(0.5),
+              color: isPopular
+                  ? AppColors.primary
+                  : AppColors.border.withValues(alpha: 0.5),
               width: isPopular ? 2.w : 1.w,
             ),
             boxShadow: const [
@@ -96,7 +98,7 @@ class SubscriptionCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 24.h),
-              
+
               // কন্ডিশনাল বাটন স্টাইলিং (Most Popular হলে সলিড গ্রিন, অন্যথায় আউটলাইনড)
               isPopular
                   ? ElevatedButton(
@@ -122,36 +124,38 @@ class SubscriptionCard extends StatelessWidget {
                       ),
                     ),
               SizedBox(height: 24.h),
-              
+
               // ফিচার লিস্ট জেনারেটর
-              ...features.map((feature) => Padding(
-                    padding: EdgeInsets.symmetric(vertical: 6.h),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.check_circle_outline,
-                          color: AppColors.primary,
-                          size: 20.sp,
-                        ),
-                        SizedBox(width: 12.w),
-                        Expanded(
-                          child: Text(
-                            feature,
-                            style: TextStyle(
-                              fontFamily: "Inter",
-                              fontSize: 14.sp,
-                              color: AppColors.textSecondary,
-                            ),
+              ...features.map(
+                (feature) => Padding(
+                  padding: EdgeInsets.symmetric(vertical: 6.h),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: AppColors.primary,
+                        size: 20.sp,
+                      ),
+                      SizedBox(width: 12.w),
+                      Expanded(
+                        child: Text(
+                          feature,
+                          style: TextStyle(
+                            fontFamily: "Inter",
+                            fontSize: 14.sp,
+                            color: AppColors.textSecondary,
                           ),
                         ),
-                      ],
-                    ),
-                  )),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-        
+
         // "Most Popular" টপ ব্যাজ
         if (isPopular)
           Positioned(
