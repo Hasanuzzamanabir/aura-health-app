@@ -16,6 +16,26 @@ class AiChatScreen extends StatefulWidget {
 
 class _AiChatScreenState extends State<AiChatScreen> {
   final TextEditingController _messageController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+
+  final List<Map<String, dynamic>> _messages = [
+    {
+      "text": "Hi Emma! How can I help you today?",
+      "isMe": false,
+      "hasCustomContent": false,
+    },
+    {
+      "text": "What should I eat after my workout?",
+      "isMe": true,
+      "hasCustomContent": false,
+    },
+    {
+      "text":
+          "Great question! Here are some high-protein options to support muscle recovery.",
+      "isMe": false,
+      "hasCustomContent": true,
+    },
+  ];
 
   final List<String> _suggestions = [
     "Adjust my calories",
@@ -23,9 +43,34 @@ class _AiChatScreenState extends State<AiChatScreen> {
     "Workout plan",
   ];
 
+  void _sendMessage(String text) {
+    if (text.trim().isEmpty) return;
+
+    setState(() {
+      _messages.add({
+        "text": text.trim(),
+        "isMe": true,
+        "hasCustomContent": false,
+      });
+    });
+
+    _messageController.clear();
+
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
   @override
   void dispose() {
     _messageController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -38,7 +83,8 @@ class _AiChatScreenState extends State<AiChatScreen> {
         child: Column(
           children: [
             Expanded(
-              child: ListView(
+              child: ListView.builder(
+                controller: _scrollController,
                 physics: const BouncingScrollPhysics(),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
                 itemCount: _messages.length,
@@ -81,7 +127,7 @@ class _AiChatScreenState extends State<AiChatScreen> {
                   ChatSuggestionChips(
                     suggestions: _suggestions,
                     onChipTap: (val) {
-                      _messageController.text = val;
+                      _sendMessage(val);
                     },
                   ),
                   SizedBox(height: 12.h),

@@ -39,157 +39,180 @@ class HomeScreen extends StatelessWidget {
             return const Center(child: Text("No health data available"));
           }
 
-          return SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Header Row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            Getting.getGreeting(),
-                            style: TextStyle(
-                              fontFamily: "Inter",
-                              fontSize: 22.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textPrimary,
+                    // Header Row
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                Getting.getGreeting(),
+                                style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontSize: 22.sp,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                              Text(
+                                data.userName,
+                                style: TextStyle(
+                                  fontFamily: "Poppins",
+                                  fontSize: 28.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.textPrimary,
+                                  height: 1.15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        // Notification Icon with Red Badge Dot
+                        GestureDetector(
+                          onTap: () => Get.toNamed(
+                            NotificationScreen.notificationScreen,
+                          ),
+                          behavior: HitTestBehavior.opaque,
+                          child: Padding(
+                            padding: EdgeInsets.all(4.w),
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                Icon(
+                                  Icons.notifications_none_outlined,
+                                  size: 28.sp,
+                                  color: AppColors.textPrimary,
+                                ),
+                                if (data.hasNotification)
+                                  Positioned(
+                                    right: 2.w,
+                                    top: 2.h,
+                                    child: Container(
+                                      width: 8.w,
+                                      height: 8.h,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                           ),
-                          Text(
-                            data.userName,
-                            style: TextStyle(
-                              fontFamily: "Poppins",
-                              fontSize: 28.sp,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.textPrimary,
-                              height: 1.15,
-                            ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      data.subGreeting,
+                      style: TextStyle(
+                        fontFamily: "Inter",
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.only(
+                    left: 20.w,
+                    right: 20.w,
+                    bottom: 16.h,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // 2x2 Grid of Metric Cards (Weight, Sleep, Readiness, Health Score)
+                      Row(
+                        children: [
+                          Expanded(child: MetricCard(metric: data.weight)),
+                          SizedBox(width: 16.w),
+                          Expanded(child: MetricCard(metric: data.sleep)),
+                        ],
+                      ),
+                      SizedBox(height: 16.h),
+                      Row(
+                        children: [
+                          Expanded(child: MetricCard(metric: data.readiness)),
+                          SizedBox(width: 16.w),
+                          Expanded(child: MetricCard(metric: data.healthScore)),
+                        ],
+                      ),
+                      SizedBox(height: 16.h),
+
+                      // Weight Trends Card (Full width)
+                      WeightTrendsCard(trend: data.weightTrend),
+                      SizedBox(height: 24.h),
+
+                      // 3x2 Grid of new health metrics (Calories, Steps, Active Minutes, Heart Rate, HRV, Stress)
+                      Row(
+                        children: [
+                          Expanded(
+                            child: HealthMetricCard(metric: data.calories),
+                          ),
+                          SizedBox(width: 16.w),
+                          Expanded(child: HealthMetricCard(metric: data.steps)),
+                        ],
+                      ),
+                      SizedBox(height: 16.h),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: HealthMetricCard(metric: data.activeMinutes),
+                          ),
+                          SizedBox(width: 16.w),
+                          Expanded(
+                            child: HealthMetricCard(metric: data.heartRate),
                           ),
                         ],
                       ),
-                    ),
-                    // Notification Icon with Red Badge Dot
-                    GestureDetector(
-                      onTap: () =>
-                          Get.toNamed(NotificationScreen.notificationScreen),
-                      behavior: HitTestBehavior.opaque,
-                      child: Padding(
-                        padding: EdgeInsets.all(4.w),
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Icon(
-                              Icons.notifications_none_outlined,
-                              size: 28.sp,
-                              color: AppColors.textPrimary,
-                            ),
-                            if (data.hasNotification)
-                              Positioned(
-                                right: 2.w,
-                                top: 2.h,
-                                child: Container(
-                                  width: 8.w,
-                                  height: 8.h,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
+                      SizedBox(height: 16.h),
+                      Row(
+                        children: [
+                          Expanded(child: HealthMetricCard(metric: data.hrv)),
+                          SizedBox(width: 16.w),
+                          Expanded(
+                            child: HealthMetricCard(metric: data.stress),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8.h),
-                Text(
-                  data.subGreeting,
-                  style: TextStyle(
-                    fontFamily: "Inter",
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.textSecondary,
+                      SizedBox(height: 16.h),
+
+                      // Sleep Duration Card (Full width at the very bottom)
+                      SleepDurationCard(trend: data.sleepDurationTrend),
+                      SizedBox(height: 24.h),
+
+                      // Today's Plan Meal Card Section
+                      TodayPlanSection(
+                        meal: data.todayMeal,
+                        progress: data.todayPlanProgress,
+                      ),
+
+                      SizedBox(height: 24.h),
+
+                      // Blood Biomarkers Section
+                      BiomarkersSection(biomarkers: data.biomarkers),
+                      SizedBox(height: 24.h),
+                    ],
                   ),
                 ),
-
-                SizedBox(height: 24.h),
-
-                // 2x2 Grid of Metric Cards (Weight, Sleep, Readiness, Health Score)
-                Row(
-                  children: [
-                    Expanded(child: MetricCard(metric: data.weight)),
-                    SizedBox(width: 16.w),
-                    Expanded(child: MetricCard(metric: data.sleep)),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-                Row(
-                  children: [
-                    Expanded(child: MetricCard(metric: data.readiness)),
-                    SizedBox(width: 16.w),
-                    Expanded(child: MetricCard(metric: data.healthScore)),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-
-                // Weight Trends Card (Full width)
-                WeightTrendsCard(trend: data.weightTrend),
-                SizedBox(height: 24.h),
-
-                // 3x2 Grid of new health metrics (Calories, Steps, Active Minutes, Heart Rate, HRV, Stress)
-                Row(
-                  children: [
-                    Expanded(child: HealthMetricCard(metric: data.calories)),
-                    SizedBox(width: 16.w),
-                    Expanded(child: HealthMetricCard(metric: data.steps)),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-                Row(
-                  children: [
-                    Expanded(
-                      child: HealthMetricCard(metric: data.activeMinutes),
-                    ),
-                    SizedBox(width: 16.w),
-                    Expanded(child: HealthMetricCard(metric: data.heartRate)),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-                Row(
-                  children: [
-                    Expanded(child: HealthMetricCard(metric: data.hrv)),
-                    SizedBox(width: 16.w),
-                    Expanded(child: HealthMetricCard(metric: data.stress)),
-                  ],
-                ),
-                SizedBox(height: 16.h),
-
-                // Sleep Duration Card (Full width at the very bottom)
-                SleepDurationCard(trend: data.sleepDurationTrend),
-                SizedBox(height: 24.h),
-
-                // Today's Plan Meal Card Section
-                TodayPlanSection(
-                  meal: data.todayMeal,
-                  progress: data.todayPlanProgress,
-                ),
-
-                SizedBox(height: 24.h),
-
-                // Blood Biomarkers Section
-                BiomarkersSection(biomarkers: data.biomarkers),
-                SizedBox(height: 24.h),
-              ],
-            ),
+              ),
+            ],
           );
         }),
       ),
