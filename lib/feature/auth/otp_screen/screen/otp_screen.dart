@@ -4,6 +4,7 @@ import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/core/utils/app_style.dart';
 import 'package:aurahealth/feature/auth/change_password/screen/change_password.dart';
 import 'package:aurahealth/feature/auth/otp_screen/controller/otp_controller.dart';
+import 'package:aurahealth/feature/onboarding/screen/onboarding_steps_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,7 +13,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpScreen extends StatefulWidget {
   final String email;
-  const OtpScreen({super.key, required this.email});
+  final bool signUp;
+  const OtpScreen({super.key, required this.email, this.signUp = false});
 
   static const String otpScreen = '/otpScreen';
 
@@ -52,7 +54,9 @@ class _OtpScreenState extends State<OtpScreen> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 12.w),
                           child: Text(
-                            "4 digit code has been sent to your email ${widget.email}",
+                            widget.signUp
+                                ? "4 digit code has been sent to your email ${widget.email}"
+                                : "4 digit code has been sent to your email ${widget.email}",
                             textAlign: TextAlign.center,
                             style: AppStyle.interMedium500(context).copyWith(
                               color: AppColors.labelTextColor,
@@ -136,6 +140,14 @@ class _OtpScreenState extends State<OtpScreen> {
                               onPressed: controller.otpCode.value.length < 4
                                   ? null
                                   : () {
+                                      if (widget.signUp) {
+                                        Get.toNamed(
+                                          OnboardingStepsScreen
+                                              .onboardingStepsScreen,
+                                        );
+                                        return;
+                                      }
+
                                       Get.toNamed(
                                         ChangePassword.changePassword,
                                       );

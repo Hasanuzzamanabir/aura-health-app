@@ -4,11 +4,11 @@ import 'package:aurahealth/core/utils/image_path.dart';
 import 'package:aurahealth/core/widget/google_login_container.dart';
 import 'package:aurahealth/core/widget/text_field_widget.dart';
 import 'package:aurahealth/feature/auth/login/screen/login_screen.dart';
+import 'package:aurahealth/feature/auth/otp_screen/screen/otp_screen.dart';
 import 'package:aurahealth/feature/auth/signup/controller/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:aurahealth/feature/onboarding/screen/onboarding_steps_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -20,6 +20,14 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  final emailController = TextEditingController();
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(SignupController());
@@ -64,6 +72,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         TextFieldWidget(
                           text: "Email",
                           child: TextField(
+                            controller: emailController,
                             decoration: InputDecoration(
                               labelText: 'Enter your email',
                             ),
@@ -122,7 +131,13 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: () => Get.toNamed(OnboardingStepsScreen.onboardingStepsScreen),
+                            onPressed: () => Get.toNamed(
+                              OtpScreen.otpScreen,
+                              arguments: {
+                                "email": emailController.text.trim(),
+                                "signUp": true,
+                              },
+                            ),
                             child: Text("Singup"),
                           ),
                         ),

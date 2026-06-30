@@ -71,7 +71,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     } else {
                       Get.toNamed(
                         OtpScreen.otpScreen,
-                        arguments: emailController.text,
+                        arguments: {
+                          'email': emailController.text,
+                          'signUp': false,
+                        },
                       );
                     }
                   },

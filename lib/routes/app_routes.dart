@@ -46,7 +46,19 @@ class AppRoutes {
     //otp  screen
     GetPage(
       name: OtpScreen.otpScreen,
-      page: () => OtpScreen(email: Get.arguments as String),
+      page: () {
+        final args = Get.arguments;
+        if (args is Map<String, dynamic>) {
+          return OtpScreen(
+            email: args['email'] as String? ?? '',
+            signUp: args['signUp'] as bool? ?? false,
+          );
+        }
+        return OtpScreen(
+          email: args is String ? args : '',
+          signUp: false,
+        );
+      },
     ),
 
     //change passworrd  screen
