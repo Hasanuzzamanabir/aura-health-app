@@ -50,71 +50,87 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextFieldWidget(
-                  text: "First Name",
-                  child: TextFormField(
-                    controller: _firstNameController,
-                    decoration: const InputDecoration(
-                      hintText: "Enter your first name",
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFieldWidget(
+                          text: "First Name",
+                          child: TextFormField(
+                            controller: _firstNameController,
+                            decoration: const InputDecoration(
+                              hintText: "Enter your first name",
+                            ),
+                          ),
+                        ),
+                        TextFieldWidget(
+                          text: "Last Name",
+                          child: TextFormField(
+                            controller: _lastNameController,
+                            decoration: const InputDecoration(
+                              hintText: "Enter your last name",
+                            ),
+                          ),
+                        ),
+                        TextFieldWidget(
+                          text: "Email",
+                          child: TextFormField(
+                            controller: _emailController,
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: const InputDecoration(
+                              hintText: "Enter your email",
+                            ),
+                          ),
+                        ),
+                        
+                        // Spacer()-এর পরিবর্তে এখন এই উইজেটটি বাটনগুলোকে নিচে পুশ করবে
+                        const Spacer(), 
+                        
+                        SizedBox(height: 20.h),
+                        OutlinedButton(
+                          onPressed: () {},
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: Size(double.infinity, 56.h),
+                            side: const BorderSide(color: AppColors.border),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.r),
+                            ),
+                          ),
+                          child: Text(
+                            "Cancel",
+                            style: AppStyle.interMedium500(
+                              context,
+                            ).copyWith(fontSize: 16.sp, color: AppColors.textPrimary),
+                          ),
+                        ),
+                        SizedBox(height: 12.h),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(double.infinity, 56.h),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.r),
+                            ),
+                          ),
+                          child: Text("Save Change", style: TextStyle(fontSize: 16.sp)),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                TextFieldWidget(
-                  text: "Last Name",
-                  child: TextFormField(
-                    controller: _lastNameController,
-                    decoration: const InputDecoration(
-                      hintText: "Enter your last name",
-                    ),
-                  ),
-                ),
-                TextFieldWidget(
-                  text: "Email",
-                  child: TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: const InputDecoration(
-                      hintText: "Enter your email",
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                OutlinedButton(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 56.h),
-                    side: const BorderSide(color: AppColors.border),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.r),
-                    ),
-                  ),
-                  child: Text(
-                    "Cancel",
-                    style: AppStyle.interMedium500(
-                      context,
-                    ).copyWith(fontSize: 16.sp, color: AppColors.textPrimary),
-                  ),
-                ),
-                SizedBox(height: 12.h),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 56.h),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.r),
-                    ),
-                  ),
-                  child: Text("Save Change", style: TextStyle(fontSize: 16.sp)),
-                ),
-              ],
-            ),
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
