@@ -10,9 +10,26 @@ import 'package:aurahealth/core/widget/custom_app_bar.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-
-class MealScreen extends StatelessWidget {
+class MealScreen extends StatefulWidget {
   const MealScreen({super.key});
+
+  @override
+  State<MealScreen> createState() => _MealScreenState();
+}
+
+class _MealScreenState extends State<MealScreen> {
+  late DateTime _selectedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedDate = DateTime.now();
+  }
+
+  String _getWeekdayName(DateTime date) {
+    final shortNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    return shortNames[date.weekday - 1];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,19 +83,28 @@ class MealScreen extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             SizedBox(height: 20.h),
-            
-            const WeeklyOverviewCard(),
-            
+
+            WeeklyOverviewCard(
+              selectedDate: _selectedDate,
+              onDateSelected: (date) {
+                setState(() {
+                  _selectedDate = date;
+                });
+              },
+            ),
+
             SizedBox(height: 24.h),
-            
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Fri's Meals",
-                  style: AppStyle.poppinsSemiBold600(context).copyWith(fontSize: 18.sp),
+                  "${_getWeekdayName(_selectedDate)}'s Meals",
+                  style: AppStyle.poppinsSemiBold600(
+                    context,
+                  ).copyWith(fontSize: 18.sp),
                 ),
                 Text(
                   "4 meals",
@@ -90,24 +116,31 @@ class MealScreen extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             SizedBox(height: 14.h),
-            
-             MealItemTile(
-              mealType: "Breakfast",
-              mealName: "Greek Yogurt Bowl",
-              calories: "520",
-              duration: "10",
-              placeholderLetter: "🥣",
-              onTap: ()  { Get.to(() => const MealPlanDetails()); },
+
+            Hero(
+              tag: 'Breakfast',
+              child: MealItemTile(
+                mealType: "Breakfast",
+                mealName: "Greek Yogurt Bowl",
+                calories: "520",
+                duration: "10",
+                placeholderLetter: "🥣",
+                onTap: () {
+                  Get.to(() => const MealPlanDetails());
+                },
+              ),
             ),
-             MealItemTile(
+            MealItemTile(
               mealType: "Snack",
               mealName: "Protein Smoothie",
               calories: "192",
               duration: "5",
               placeholderLetter: "🥛",
-              onTap: ()  { Get.to(() => const MealPlanDetails()); },
+              onTap: () {
+                Get.to(() => const MealPlanDetails());
+              },
             ),
             MealItemTile(
               mealType: "Lunch",
@@ -115,14 +148,19 @@ class MealScreen extends StatelessWidget {
               calories: "600",
               duration: "30",
               placeholderLetter: "🥗",
-              onTap: ()  { Get.to(() => const MealPlanDetails()); },
+              onTap: () {
+                Get.to(() => const MealPlanDetails());
+              },
             ),
-             MealItemTile(
+            MealItemTile(
               mealType: "Dinner",
               mealName: "Salmon & Veggies",
               calories: "560",
               duration: "25",
-              placeholderLetter: "🐟", onTap: () { Get.to(() => const MealPlanDetails()); },
+              placeholderLetter: "🐟",
+              onTap: () {
+                Get.to(() => const MealPlanDetails());
+              },
             ),
           ],
         ),

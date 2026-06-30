@@ -10,11 +10,18 @@ class MealAiInsightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 16.h),
       decoration: BoxDecoration(
-        color: AppColors.primaryLight.withOpacity(0.4),
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: AppColors.primary.withOpacity(0.1)),
+        color: AppColors.primaryLight.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(20.r),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.15)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: AppColors.primary.withValues(alpha: 0.05),
+            blurRadius: 12.r,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,10 +29,14 @@ class MealAiInsightCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8.w),
             decoration: const BoxDecoration(
-              color: AppColors.white,
+              color: AppColors.primaryLight,
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.auto_awesome, color: AppColors.primary, size: 16.sp),
+            child: Icon(
+              Icons.auto_awesome,
+              color: AppColors.primary,
+              size: 16.sp,
+            ),
           ),
           SizedBox(width: 14.w),
           Expanded(
@@ -36,18 +47,19 @@ class MealAiInsightCard extends StatelessWidget {
                   "AI Insight",
                   style: TextStyle(
                     fontFamily: "Inter",
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primaryDark,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.primary,
                   ),
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 6.h),
                 Text(
                   insightText,
                   style: TextStyle(
                     fontFamily: "Inter",
-                    fontSize: 13.sp,
-                    color: AppColors.textPrimary.withOpacity(0.8),
+                    fontSize: 14.sp,
+                    color: AppColors.textPrimary,
+                    fontWeight: FontWeight.w500,
                     height: 1.4,
                   ),
                 ),

@@ -16,8 +16,8 @@ class RecipeInstructionsWidget extends StatelessWidget {
           "Instructions",
           style: TextStyle(
             fontFamily: "Inter",
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w700,
             color: AppColors.textPrimary,
           ),
         ),
@@ -26,40 +26,40 @@ class RecipeInstructionsWidget extends StatelessWidget {
           int index = entry.key + 1;
           String step = entry.value;
           return Padding(
-            padding: EdgeInsets.only(bottom: 12.h),
+            padding: EdgeInsets.only(bottom: 16.h),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  width: 24.w,
-                  height: 24.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.surface,
+                  width: 28.w,
+                  height: 28.w,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFF4F5F7),
                     shape: BoxShape.circle,
-                    border: Border.all(color: AppColors.border.withOpacity(0.5)),
                   ),
                   alignment: Alignment.center,
                   child: Text(
                     "$index",
                     style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.bold,
+                      fontFamily: "Inter",
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
                     ),
                   ),
                 ),
-                SizedBox(width: 14.w),
+                SizedBox(width: 16.w),
                 Expanded(
                   child: Padding(
-                    padding: EdgeInsets.only(top: 2.h),
+                    padding: EdgeInsets.only(top: 4.h),
                     child: Text(
                       step,
                       style: TextStyle(
                         fontFamily: "Inter",
-                        fontSize: 14.sp,
-                        color: AppColors.textSecondary,
-                        height: 1.3,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xFF7E8B9A),
+                        height: 1.4,
                       ),
                     ),
                   ),

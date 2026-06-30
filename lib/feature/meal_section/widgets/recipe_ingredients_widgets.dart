@@ -16,31 +16,32 @@ class RecipeIngredientsWidget extends StatelessWidget {
           "Ingredients",
           style: TextStyle(
             fontFamily: "Inter",
-            fontSize: 16.sp,
-            fontWeight: FontWeight.bold,
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w700,
             color: AppColors.textPrimary,
           ),
         ),
-        SizedBox(height: 12.h),
+        SizedBox(height: 16.h),
         ...ingredients.map((ingredient) => Padding(
-              padding: EdgeInsets.symmetric(vertical: 4.h),
+              padding: EdgeInsets.symmetric(vertical: 6.h),
               child: Row(
                 children: [
                   Container(
-                    width: 5.w,
-                    height: 5.w,
+                    width: 6.w,
+                    height: 6.w,
                     decoration: const BoxDecoration(
                       color: AppColors.primary,
                       shape: BoxShape.circle,
                     ),
                   ),
-                  SizedBox(width: 10.w),
+                  SizedBox(width: 12.w),
                   Text(
                     ingredient,
                     style: TextStyle(
                       fontFamily: "Inter",
-                      fontSize: 14.sp,
-                      color: AppColors.textSecondary,
+                      fontSize: 15.sp,
+                      fontWeight: FontWeight.w500,
+                      color: const Color(0xFF7E8B9A),
                     ),
                   ),
                 ],

@@ -61,7 +61,7 @@ class MealMacroWidget extends StatelessWidget {
     return Container(
       width: 1.w,
       height: 24.h,
-      color: AppColors.border.withOpacity(0.6),
+      color: AppColors.border.withValues(alpha: 0.6),
     );
   }
 }
