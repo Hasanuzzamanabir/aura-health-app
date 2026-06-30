@@ -1,7 +1,6 @@
 import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
-
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
