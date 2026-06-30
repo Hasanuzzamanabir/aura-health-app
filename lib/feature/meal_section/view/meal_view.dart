@@ -35,7 +35,7 @@ class _MealScreenState extends State<MealScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.surface,
-      appBar: const CustomAppBar(title: "Meal Plan"),
+      appBar: const CustomAppBar(title: "Meal Plan", isBack: false),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         child: Column(
