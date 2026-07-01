@@ -5,7 +5,6 @@ import 'package:aurahealth/core/theme/app_colors.dart';
 import 'package:aurahealth/feature/home/model/home_model.dart';
 import 'package:aurahealth/feature/bottom_nav_bar/bottom_nav_bar_controller.dart';
 import 'package:aurahealth/feature/meal_section/view/meal_plan_details.dart';
-import 'package:aurahealth/feature/recipe_section/controller/recipe_controller.dart';
 
 class TodayPlanSection extends StatelessWidget {
   final TodayMeal meal;
@@ -84,17 +83,18 @@ class TodayPlanSection extends StatelessWidget {
         // Meal Card
         GestureDetector(
           onTap: () {
+            Get.to(() => MealPlanDetails());
             // Find recipe dynamically from RecipeController if available
-            try {
-              final recipeController = Get.find<RecipeController>();
-              final recipe = recipeController.recipes.firstWhere(
-                (r) => r.title.toLowerCase().contains("quinoa"),
-              );
-              Get.to(() => MealPlanDetails(recipe: recipe));
-            } catch (e) {
-              // Fallback
-              Get.to(() => const MealPlanDetails());
-            }
+            // try {
+            //   // final recipeController = Get.find<RecipeController>();
+            //   // final recipe = recipeController.recipes.firstWhere(
+            //   //   (r) => r.title.toLowerCase().contains("quinoa"),
+            //   // );
+            //   Get.to(() => MealPlanDetails());
+            // } catch (e) {
+            //   // Fallback
+            //   Get.to(() => const MealPlanDetails());
+            // }
           },
           behavior: HitTestBehavior.opaque,
           child: Container(
